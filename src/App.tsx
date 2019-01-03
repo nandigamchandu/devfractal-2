@@ -1,6 +1,13 @@
 import React from 'react'
 import { HashRouter, Link } from 'react-router-dom'
-import { Container, Hero, HeroBody, SubTitle, Title } from './devfractal'
+import {
+  Container,
+  Hero,
+  HeroBody,
+  SubTitle,
+  Title,
+  Section,
+} from './devfractal'
 import logo from './docs/logo.png'
 import { Presentation } from './Presentation'
 
@@ -18,7 +25,7 @@ const PresentationApp: React.SFC = ({ children }) => (
         </Container>
       </HeroBody>
     </Hero>
-    {children}
+    <Section>{children}</Section>
   </>
 )
 

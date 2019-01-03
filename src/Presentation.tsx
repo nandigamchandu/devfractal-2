@@ -11,7 +11,6 @@ import {
   SimpleViewer,
   Text,
 } from './devfractal'
-import TableContentLoader from './devfractal/elements/TableContentLoader'
 import { delay } from './utils'
 
 // tslint:disable
@@ -59,19 +58,15 @@ export const Counter = () => {
 
   return (
     <Box textAlignment="centered" shadowLess>
-      <Button noControl variant="success">
+      <Button onClick={inc} noControl variant="success">
         <Icon icon={faPlus} />
       </Button>
       <Text textSize="2">{count}</Text>
-      <Button noControl variant="danger">
+      <Button onClick={dec} noControl variant="danger">
         <Icon icon={faMinus} />
       </Button>
     </Box>
   )
 }
 
-export const Presentation = () => (
-  <>
-    <SimpleTable values={asyncTodoList} />
-  </>
-)
+export const Presentation = () => <Counter />

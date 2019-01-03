@@ -10,8 +10,8 @@ import {
   Th,
   Tr,
 } from '../elements'
-import { CheckBox } from '../form'
 import TableContentLoader from '../elements/TableContentLoader'
+import { CheckBox } from '../form'
 
 export interface RowClickEvent<T> {
   readonly value: T
