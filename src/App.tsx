@@ -1,10 +1,32 @@
 import React from 'react'
-import { HashRouter } from 'react-router-dom'
+import { HashRouter, Link } from 'react-router-dom'
+import { Container, Hero, HeroBody, SubTitle, Title } from './devfractal'
+import logo from './docs/logo.png'
 import { Presentation } from './Presentation'
 
-export const App: React.SFC = () => (
+const PresentationApp: React.SFC = ({ children }) => (
+  <>
+    <Hero variant="light">
+      <HeroBody>
+        <Container className="has-text-centered">
+          <Title>
+            <Link to="/">
+              <img src={logo} style={{ width: '512px' }} />
+            </Link>
+          </Title>
+          <SubTitle>React Simplified</SubTitle>
+        </Container>
+      </HeroBody>
+    </Hero>
+    {children}
+  </>
+)
+
+export const App: React.SFC = ({ children }) => (
   <HashRouter>
-    <Presentation />
+    <PresentationApp>
+      <Presentation />
+    </PresentationApp>
   </HashRouter>
 )
 

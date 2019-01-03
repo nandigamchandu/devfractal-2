@@ -5,13 +5,11 @@ import {
   Box,
   Button,
   Icon,
-  Section,
   Simple,
   SimpleEditor,
   SimpleTable,
   SimpleViewer,
   Text,
-  Title,
 } from './devfractal'
 import { delay } from './utils'
 
@@ -71,9 +69,4 @@ export const Counter = () => {
   )
 }
 
-export const Presentation = () => (
-  <Section>
-    <Title textAlignment="centered">Devfractal!</Title>
-    <SimpleTable values={fetchTodoList} />
-  </Section>
-)
+export const Presentation = () => <Counter />
