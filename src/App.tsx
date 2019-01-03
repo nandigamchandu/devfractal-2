@@ -22,7 +22,7 @@ const PresentationApp: React.SFC = ({ children }) => (
   </>
 )
 
-export const App: React.SFC = ({ children }) => (
+export const App: React.SFC = () => (
   <HashRouter>
     <PresentationApp>
       <Presentation />
