@@ -11,9 +11,9 @@ const Loader = (props: any) => {
       secondaryColor="#ecebeb"
       {...props}
     >
-      <rect x="34" y="13" rx="6" ry="6" width="150" height="8" />
-      <rect x="200" y="13" rx="6" ry="6" width="250" height="8" />
-      <rect x="470" y="13" rx="6" ry="6" width="117" height="8" />
+      <rect x="25" y="13" rx="6" ry="6" width="150" height="8" />
+      <rect x="200" y="13" rx="6" ry="6" width="550" height="8" />
+      <rect x="775" y="13" rx="6" ry="6" width="117" height="8" />
     </ContentLoader>
   )
 }

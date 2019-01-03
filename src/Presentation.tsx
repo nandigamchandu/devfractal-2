@@ -11,6 +11,7 @@ import {
   SimpleViewer,
   Text,
 } from './devfractal'
+import TableContentLoader from './devfractal/elements/TableContentLoader'
 import { delay } from './utils'
 
 // tslint:disable
@@ -69,4 +70,8 @@ export const Counter = () => {
   )
 }
 
-export const Presentation = () => <Counter />
+export const Presentation = () => (
+  <>
+    <SimpleTable values={asyncTodoList} />
+  </>
+)
