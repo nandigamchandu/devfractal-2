@@ -11,6 +11,7 @@ import {
   Tr,
 } from '../elements'
 import { CheckBox } from '../form'
+import TableContentLoader from '../elements/TableContentLoader'
 
 export interface RowClickEvent<T> {
   readonly value: T
@@ -93,7 +94,7 @@ export function SimpleTable<T>(args: SimpleTableProps<T>): JSX.Element {
           } else if (data) {
             return <TableView {...props} values={data} />
           } else {
-            return <div>Loading...</div>
+            return <TableContentLoader />
           }
         }}
       </Async>
