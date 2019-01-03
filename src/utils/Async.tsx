@@ -20,9 +20,13 @@ export const Async: React.SFC<AsyncProps> = ({
   return children({ data, error, isLoading })
 }
 
-export const delay: (delay: number, f: () => void) => Promise<void> = async (
-  delay: number,
-  f: () => void,
+const nop: () => void = () => {
+  return
+}
+
+export const delay: (delay: number, f?: () => void) => Promise<void> = async (
+  delay,
+  f = nop,
 ) =>
   new Promise(resolve =>
     setTimeout(() => {
@@ -34,7 +38,7 @@ export const delay: (delay: number, f: () => void) => Promise<void> = async (
 export const interval: (
   interval: number,
   f: () => void,
-) => Promise<void> = async (interval: number, f: () => void) =>
+) => Promise<void> = async (interval, f = nop) =>
   new Promise(resolve =>
     setInterval(() => {
       f()
