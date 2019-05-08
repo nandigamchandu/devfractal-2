@@ -4858,7 +4858,7 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-firebase@5.11.1, firebase@^5.10.1, firebase@^5.11.1:
+firebase@5.11.1, firebase@^5.11.1:
   version "5.11.1"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-5.11.1.tgz#e7d376265545d7b0538b4679a96145c26a2b5c39"
   integrity sha512-cop2UHytKas8WJZTovZqhpZIgwRfsvegijyOjgmMJoaOHCnyH4eymPneglgXsK5ExOdxJSTC4QD5qETrdL3dMw==
@@ -4968,7 +4968,7 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
-formik@^1.5.3, formik@^1.5.4:
+formik@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/formik/-/formik-1.5.4.tgz#e2e3182d030134a1bf7fddfb394290660212475c"
   integrity sha512-m7Tboq9O6MntCM8+J/b3jGGKXNXRq1dTzLvEdujSySejlewqVeYLy/goulrvr152wPe9ycKV0NlFSQ8Q1EwycQ==
@@ -4988,10 +4988,15 @@ forwarded@~0.1.2:
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
-fp-ts@^1.0.0, fp-ts@^1.0.1, fp-ts@^1.17.1:
+fp-ts@^1.0.0, fp-ts@^1.0.1:
   version "1.17.2"
   resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-1.17.2.tgz#d8ab44a535ea53aad0623b289c15fad7e1f00e54"
   integrity sha512-8Ldcoj8IkYuOqINRcGeSI3JoatMM1A6rg2n4tn5jgaV7nwcX45UNOkFMhMpboEz4b+C+HKcc2tqOUmdu/hIBNw==
+
+fp-ts@^1.17.2:
+  version "1.17.3"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-1.17.3.tgz#5064afc4bee8ddcaea567479bfc62d527e015825"
+  integrity sha512-r4gHfAWaRrYPsmdzRl1U9CkpbdOi8fPg5F5KiazAadENz5DKdWEaCDPl2Tf92fvkZGD/ekZ3EHu3gtXIVcsXtA==
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -9523,10 +9528,10 @@ react-fast-compare@^2.0.1, react-fast-compare@^2.0.4:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
-react-hanger@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-hanger/-/react-hanger-1.2.0.tgz#26d3ccdebc7bd561640de6239fb9250a9c4834cd"
-  integrity sha512-YKMFa4wkWb8pvsxSX9F6atEpsvxfddbfyIv5TmReYs/0oWOZrGIYmVY95kQOX0bnsyy3xRSnjyv62+uZqzZrlQ==
+react-hanger@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-hanger/-/react-hanger-2.0.0.tgz#c0d3e71f09995d5c9434ca85e743b0fa38058c33"
+  integrity sha512-lJsnEgZl+01N9WLPjbv2HZllKIyfNDh4TKZ3tudEVY8VpRmO2gtDp3fWUKuUmp05uwQL/4xf+q10yzPK3/dQ0g==
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.8.6"
@@ -9638,10 +9643,10 @@ react-testing-library@^7.0.0:
     "@babel/runtime" "^7.4.3"
     dom-testing-library "^4.0.0"
 
-react-use@^8.2.0:
-  version "8.3.1"
-  resolved "https://registry.yarnpkg.com/react-use/-/react-use-8.3.1.tgz#31b98df0acb312c19e14ebb025121e4f98ad292b"
-  integrity sha512-qN3tqhm7Izntj3zfZgL/Y/Ba0gkVr0BUTaFskxd6zDHB2rAuqXR7RXSTy7Fk0WO3vAPZCvBLk8DyqNGnb5AvZQ==
+react-use@^8.3.1:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/react-use/-/react-use-8.4.0.tgz#9c674d8732b6d27db3c65e507390857a321a8801"
+  integrity sha512-oht/WBmkjMoRnlWMKxWs5mldu1xOln+4NBmT94WwJdW7caopY+eDYk2NyPhfKj8Fj9ggLkBMA9vaRDbvNpuC6A==
   dependencies:
     copy-to-clipboard "^3.1.0"
     nano-css "^5.1.0"
@@ -10965,10 +10970,10 @@ tcomb@^3.2.29:
   resolved "https://registry.yarnpkg.com/tcomb/-/tcomb-3.2.29.tgz#32404fe9456d90c2cf4798682d37439f1ccc386c"
   integrity sha512-di2Hd1DB2Zfw6StGv861JoAF5h/uQVu/QJp2g8KVbtfKnoHdBQl5M32YWq6mnSYBQ1vFFrns5B1haWJL7rKaOQ==
 
-technoidentity-devfractal@^0.5.6:
-  version "0.5.6"
-  resolved "https://registry.yarnpkg.com/technoidentity-devfractal/-/technoidentity-devfractal-0.5.6.tgz#01e3fbb8c629a9d8e3e79a5a87035580949c6f57"
-  integrity sha512-5ZYPA34t7Sx4egPBeKe0BmsEGndJZsyiNGriE1DPHnMGZyV8P9vCuqVSgPZVZjycsuPLjOOKVBVwD7gycAdMJA==
+technoidentity-devfractal@^0.5.7-alpha:
+  version "0.5.7-alpha"
+  resolved "https://registry.yarnpkg.com/technoidentity-devfractal/-/technoidentity-devfractal-0.5.7-alpha.tgz#f48a9d14540bc7642bb00ee55bcf03b5f9e73305"
+  integrity sha512-+34o5NPvmE9IsHRpLyy+3LAj6r7YDSKFu3jivj+/fCtDvBN+p3EwU7QTntMpxL9LQWiWTYY5f2AnShfklbX01g==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.17"
     "@fortawesome/free-brands-svg-icons" "^5.8.1"
@@ -10979,19 +10984,19 @@ technoidentity-devfractal@^0.5.6:
     bulma "^0.7.4"
     cleave.js "^1.4.10"
     date-fns "^1.30.1"
-    firebase "^5.10.1"
-    formik "^1.5.3"
-    fp-ts "^1.17.1"
+    firebase "^5.11.1"
+    formik "^1.5.4"
+    fp-ts "^1.17.2"
     immer "^3.1.1"
     io-ts "^1.8.5"
     io-ts-reporters "^0.0.21"
     io-ts-types "^0.4.7"
     monocle-ts "^1.7.1"
     react-content-loader "^4.2.1"
-    react-hanger "^1.2.0"
+    react-hanger "^2.0.0"
     react-router "5.0.0"
     react-router-dom "5.0.0"
-    react-use "^8.2.0"
+    react-use "^8.3.1"
     rxjs "^6.5.1"
     shortid "^2.2.14"
     tcomb "^3.2.29"
