@@ -21,13 +21,13 @@ export const FormMedia: React.FC = () => (
     </MediaLeft>
     <MediaContent>
       <Text
-        textWeight="bold"
-        textColor="white"
+        weight="bold"
+        color="white"
         className="is-size-4-desktop is-size-5-mobile"
       >
         Form
       </Text>
-      <SubTitle size="6" textColor="white">
+      <SubTitle size="6" color="white">
         The indispensable form controls designed for clarity
       </SubTitle>
     </MediaContent>
@@ -41,13 +41,13 @@ export const ColumnsMedia: React.FC = () => (
     </MediaLeft>
     <MediaContent>
       <Text
-        textWeight="bold"
-        textColor="white"
+        weight="bold"
+        color="white"
         className="is-size-4-desktop is-size-5-mobile"
       >
         Columns
       </Text>
-      <SubTitle size="6" textColor="white">
+      <SubTitle size="6" color="white">
         The power of the Flexbox in a very simple design interface
       </SubTitle>
     </MediaContent>
@@ -61,13 +61,13 @@ export const LayoutMedia: React.FC = () => (
     </MediaLeft>
     <MediaContent>
       <Text
-        textWeight="bold"
-        textColor="white"
+        weight="bold"
+        color="white"
         className="is-size-4-desktop is-size-5-mobile"
       >
         Layout
       </Text>
-      <SubTitle size="6" textColor="white">
+      <SubTitle size="6" color="white">
         Design the structure of your webpage with css classes
       </SubTitle>
     </MediaContent>
@@ -81,13 +81,13 @@ export const ElementsMedia: React.FC = () => (
     </MediaLeft>
     <MediaContent>
       <Text
-        textWeight="bold"
-        textColor="white"
+        weight="bold"
+        color="white"
         className="is-size-4-desktop is-size-5-mobile"
       >
         Elements
       </Text>
-      <SubTitle size="6" textColor="white">
+      <SubTitle size="6" color="white">
         Essential interface elements that only require a single css class
       </SubTitle>
     </MediaContent>
@@ -101,13 +101,13 @@ export const ComponentsMedia: React.FC = () => (
     </MediaLeft>
     <MediaContent>
       <Text
-        textWeight="bold"
-        textColor="white"
+        weight="bold"
+        color="white"
         className="is-size-4-desktop is-size-5-mobile"
       >
         Components
       </Text>
-      <SubTitle size="6" textColor="white">
+      <SubTitle size="6" color="white">
         Advanced multi-part components with lots of responsibilities
       </SubTitle>
     </MediaContent>
@@ -121,13 +121,13 @@ export const ModifiersMedia: React.FC = () => (
     </MediaLeft>
     <MediaContent>
       <Text
-        textWeight="bold"
-        textColor="white"
+        weight="bold"
+        color="white"
         className="is-size-4-desktop is-size-5-mobile"
       >
         Modifiers
       </Text>
-      <SubTitle size="6" textColor="white">
+      <SubTitle size="6" color="white">
         An easy-to-read naming system being designed for humans
       </SubTitle>
     </MediaContent>
@@ -141,13 +141,13 @@ export const CompositesMedia: React.FC = () => (
     </MediaLeft>
     <MediaContent>
       <Text
-        textWeight="bold"
-        textColor="white"
+        weight="bold"
+        color="white"
         className="is-size-4-desktop is-size-5-mobile"
       >
         Composites
       </Text>
-      <SubTitle size="6" textColor="white">
+      <SubTitle size="6" color="white">
         More examples using multiple components
       </SubTitle>
     </MediaContent>
@@ -155,19 +155,19 @@ export const CompositesMedia: React.FC = () => (
 )
 
 export const CrudMedia: React.FC = () => (
-  <Media className="box" shadowLess style={{ backgroundColor: '#004267' }}>
+  <Media className="box" style={{ backgroundColor: '#004267' }}>
     <MediaLeft style={{ marginTop: '1rem' }}>
       <img src={compositesIcon} alt="composites icon" />
     </MediaLeft>
     <MediaContent>
       <Text
-        textWeight="bold"
-        textColor="white"
+        weight="bold"
+        color="white"
         className="is-size-4-desktop is-size-5-mobile"
       >
         Crud
       </Text>
-      <SubTitle size="6" textColor="white">
+      <SubTitle size="6" color="white">
         Create Crud components, rails style!
       </SubTitle>
     </MediaContent>

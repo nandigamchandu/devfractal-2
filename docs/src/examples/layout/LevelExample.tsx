@@ -61,25 +61,25 @@ const CenteredLevelExample: React.FC = () => (
     <LevelComponent>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered">Tweets</Text>
+          <Text alignment="centered">Tweets</Text>
           <Title>3,456</Title>
         </Section>
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered">Following</Text>
+          <Text alignment="centered">Following</Text>
           <Title>123</Title>
         </Section>
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered">Followers</Text>
+          <Text alignment="centered">Followers</Text>
           <Title>456K</Title>
         </Section>
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered">Likes</Text>
+          <Text alignment="centered">Likes</Text>
           <Title>789</Title>
         </Section>
       </LevelItem>
@@ -87,21 +87,21 @@ const CenteredLevelExample: React.FC = () => (
     <LevelComponent>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered" textColor="info">
+          <Text alignment="centered" color="info">
             <a href="#!">Home</a>
           </Text>
         </Section>
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered" textColor="info">
+          <Text alignment="centered" color="info">
             <a href="#!">Menu</a>
           </Text>
         </Section>
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered">
+          <Text alignment="centered">
             {/* @TODO: change this to Image and drop style*/}
             <img
               src="https://bulma.io/images/bulma-type.png"
@@ -113,14 +113,14 @@ const CenteredLevelExample: React.FC = () => (
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered" textColor="info">
+          <Text alignment="centered" color="info">
             <a href="#!">Reservations</a>
           </Text>
         </Section>
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered" textColor="info">
+          <Text alignment="centered" color="info">
             <a href="#!">Contact</a>
           </Text>
         </Section>
@@ -135,25 +135,25 @@ const MobileLevelExample: React.FC = () => (
     <LevelComponent className="is-mobile">
       <LevelItem>
         <Section>
-          <Text textAlignment="centered">Tweets</Text>
+          <Text alignment="centered">Tweets</Text>
           <Title>3,456</Title>
         </Section>
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered">Following</Text>
+          <Text alignment="centered">Following</Text>
           <Title>123</Title>
         </Section>
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered">Followers</Text>
+          <Text alignment="centered">Followers</Text>
           <Title>456K</Title>
         </Section>
       </LevelItem>
       <LevelItem>
         <Section>
-          <Text textAlignment="centered">Likes</Text>
+          <Text alignment="centered">Likes</Text>
           <Title>789</Title>
         </Section>
       </LevelItem>
