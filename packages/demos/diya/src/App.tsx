@@ -20,6 +20,7 @@ import {
   UserRoutes,
   VehicleRoutes,
 } from './pages'
+import './styles/css/custom.css'
 
 export const App = () => (
   <Router variant="browser">
