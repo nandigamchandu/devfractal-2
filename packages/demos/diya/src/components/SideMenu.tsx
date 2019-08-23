@@ -17,6 +17,7 @@ import {
   MenuList,
   Section,
 } from 'technoidentity-devfractal'
+import { menuBurger } from '../common/menuBurger'
 import diyaLogo from '../images/diyaLogo.png'
 
 export const SideMenu = () => (
@@ -28,6 +29,20 @@ export const SideMenu = () => (
       alignItems: 'center',
     }}
   >
+    <Section paddingLess>
+      <a
+        role="button"
+        className="navbar-burger"
+        aria-label="menu"
+        aria-expanded="false"
+        onClick={menuBurger}
+      >
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+      </a>
+    </Section>
+
     <Section>
       <Image src={diyaLogo} alt="diyaImage" size="96x96" />
     </Section>
@@ -41,28 +56,36 @@ export const SideMenu = () => (
           }}
         >
           <MenuItem href="/drivers">
-            <Icon icon={faUsers} /> Drivers
+            <Icon icon={faUsers} />{' '}
+            <span className="menu-list-label">Drivers</span>
           </MenuItem>
           <MenuItem href="/vehicles">
-            <Icon icon={faBus} /> Vehicles
+            <Icon icon={faBus} />{' '}
+            <span className="menu-list-label">Vehicles</span>
           </MenuItem>
           <MenuItem href="/batteries">
-            <Icon icon={faCarBattery} /> Battery
+            <Icon icon={faCarBattery} />{' '}
+            <span className="menu-list-label">Battery</span>
           </MenuItem>
           <MenuItem href="/clients">
-            <Icon icon={faUserFriends} /> Clients
+            <Icon icon={faUserFriends} />{' '}
+            <span className="menu-list-label">Clients</span>
           </MenuItem>
           <MenuItem href="/geo_fences">
-            <Icon icon={faMapMarked} /> GeoFences
+            <Icon icon={faMapMarked} />{' '}
+            <span className="menu-list-label">GeoFences</span>
           </MenuItem>
           <MenuItem href="/users">
-            <Icon icon={faUsers} /> Users
+            <Icon icon={faUsers} />{' '}
+            <span className="menu-list-label">Users</span>
           </MenuItem>
           <MenuItem href="#!">
-            <Icon icon={faBell} /> Alerts
+            <Icon icon={faBell} />{' '}
+            <span className="menu-list-label">Alerts</span>
           </MenuItem>
           <MenuItem href="#!">
-            <Icon icon={faPaperPlane} /> Reports
+            <Icon icon={faPaperPlane} />{' '}
+            <span className="menu-list-label">Reports</span>
           </MenuItem>
         </MenuList>
       </Menu>
