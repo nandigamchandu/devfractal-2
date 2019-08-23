@@ -1,0 +1,8 @@
+@media(max-width: 1078px){
+  .menu-list-label{
+    display: none;
+  }
+  &.is-active{
+    display: contents;
+  }
+}
