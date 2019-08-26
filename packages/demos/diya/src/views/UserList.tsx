@@ -1,23 +1,25 @@
-import { readonlyArray } from 'io-ts'
 import React from 'react'
-import { component, Section, v2 } from 'technoidentity-devfractal'
-import { req } from 'technoidentity-utils'
+import {
+  CrudTable,
+  links,
+  listComponent,
+  RoutedPager,
+  Section,
+} from 'technoidentity-devfractal'
 import { User } from '../common'
 import { CreateLink, HeadTitle } from '../components'
 
-const UserListProps = req({ data: readonlyArray(User) })
+const userLinks = links('users')
 
-const userLinks = v2.links('users')
-
-export const UserList = component(UserListProps, ({ data: userList }) => (
+export const UserList = listComponent(User, ({ data: userList }) => (
   <Section>
     <HeadTitle>Users</HeadTitle>
     <CreateLink to={userLinks.create}>Add user</CreateLink>
-    <v2.CrudTable
+    <CrudTable
       data={userList}
       headers={['userName', 'role']}
-      editLink={v => userLinks.edit(v.id)}
+      editTo={v => userLinks.edit(v.id)}
     />
-    <v2.RoutedPager />
+    <RoutedPager />
   </Section>
 ))

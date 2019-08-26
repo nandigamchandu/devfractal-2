@@ -4,7 +4,7 @@ import {
   Button,
   Column,
   Columns,
-  component,
+  formComponent,
   Image,
   Media,
   MediaContent,
@@ -12,9 +12,7 @@ import {
   Section,
   Simple,
   Title,
-  v2,
 } from 'technoidentity-devfractal'
-import { empty } from 'technoidentity-utils'
 import { Employee } from '../common'
 
 // const validationSchema = yup.object().shape({
@@ -25,14 +23,12 @@ import { Employee } from '../common'
 //   adharNuzmber: yup.string().required(),
 // })
 
-const EmployeeFormProps = v2.formProps(Employee)
-
-export const EmployeeForm = component(
-  EmployeeFormProps,
-  ({ initial = empty(Employee), onSubmit }) => (
+export const EmployeeForm = formComponent(
+  Employee,
+  ({ initial, edit, onSubmit }) => (
     <>
       <Title size="4" textColor="info">
-        Add Employee
+        {edit ? 'Add' : 'Edit'} Employee
       </Title>
 
       <Section>

@@ -4,7 +4,7 @@ import {
   Button,
   Column,
   Columns,
-  component,
+  formComponent,
   Image,
   Media,
   MediaContent,
@@ -12,9 +12,7 @@ import {
   Section,
   Simple,
   Title,
-  v2,
 } from 'technoidentity-devfractal'
-import { empty } from 'technoidentity-utils'
 import { Driver } from '../common'
 import { HeadTitle } from '../components'
 
@@ -26,13 +24,11 @@ import { HeadTitle } from '../components'
 //   adharNumber: yup.string().required(),
 // })
 
-const DriverFormProps = v2.formProps(Driver)
-
-export const DriverForm = component(
-  DriverFormProps,
-  ({ initial = empty(Driver), onSubmit }) => (
+export const DriverForm = formComponent(
+  Driver,
+  ({ initial, edit, onSubmit }) => (
     <>
-      <HeadTitle>Create/Edit Driver</HeadTitle>
+      <HeadTitle>{edit ? 'Edit' : 'Create'} Driver</HeadTitle>
 
       <Section>
         <Simple.Form initialValues={initial} onSubmit={onSubmit}>

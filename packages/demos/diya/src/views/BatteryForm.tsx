@@ -5,7 +5,7 @@ import {
   Button,
   Column,
   Columns,
-  component,
+  formComponent,
   Image,
   Media,
   MediaContent,
@@ -13,19 +13,15 @@ import {
   Section,
   Simple,
   Title,
-  v2,
 } from 'technoidentity-devfractal'
-import { empty } from 'technoidentity-utils'
 import { Battery } from '../common'
 import { HeadTitle } from '../components'
 
-const BatteryFormProps = v2.formProps(Battery)
-
-export const BatteryForm = component(
-  BatteryFormProps,
-  ({ onSubmit, initial = empty(Battery) }) => (
+export const BatteryForm = formComponent(
+  Battery,
+  ({ onSubmit, edit, initial }) => (
     <>
-      <HeadTitle>Add or Update Battery</HeadTitle>
+      <HeadTitle>{edit ? 'Add' : 'Update'} Battery</HeadTitle>
 
       <Section>
         <Title textAlignment="left" size="5" textColor="info">

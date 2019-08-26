@@ -12,6 +12,7 @@ import {
   CrudRoutes,
   CrudTable,
   formComponent,
+  links,
   listComponent,
 } from './new'
 
@@ -38,7 +39,9 @@ const TodoForm = formComponent(Todo, ({ initial, onSubmit }) => (
   </Simple.Form>
 ))
 
-const TodoList = listComponent(Todo, ({ data, editTo, createTo }) => (
+const { create: createTo, edit: editTo } = links('todos')
+
+const TodoList = listComponent(Todo, ({ data }) => (
   <>
     <ButtonLink to={createTo} variant="primary">
       Add
@@ -46,7 +49,7 @@ const TodoList = listComponent(Todo, ({ data, editTo, createTo }) => (
     <CrudTable
       data={data}
       headers={['title', 'done']}
-      editLink={({ id }) => editTo(id)}
+      editTo={({ id }) => editTo(id)}
     />
   </>
 ))
