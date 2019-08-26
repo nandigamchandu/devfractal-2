@@ -18,7 +18,7 @@ import {
   Section,
 } from 'technoidentity-devfractal'
 import { menuBurger } from '../common/menuBurger'
-import diyaLogo from '../images/diyaLogo.png'
+import diyaLogo from '../images/diyaWhiteLogo.png'
 
 export const SideMenu = () => (
   <Column
@@ -29,10 +29,10 @@ export const SideMenu = () => (
       alignItems: 'center',
     }}
   >
-    <Section paddingLess>
+    <Section className="has-background-link">
       <a
         role="button"
-        className="navbar-burger"
+        className="navbar-burger has-text-white"
         aria-label="menu"
         aria-expanded="false"
         onClick={menuBurger}
@@ -41,13 +41,10 @@ export const SideMenu = () => (
         <span aria-hidden="true" />
         <span aria-hidden="true" />
       </a>
-    </Section>
-
-    <Section>
       <Image src={diyaLogo} alt="diyaImage" size="96x96" />
     </Section>
 
-    <Section>
+    <Section paddingLess>
       <Menu>
         <MenuList
           style={{
