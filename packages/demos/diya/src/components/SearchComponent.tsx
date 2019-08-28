@@ -9,12 +9,12 @@ import { HasProps } from 'technoidentity-utils'
 export const SearchComponent = <Spec extends Mixed & HasProps>({
   spec,
   resource,
-  scearchBy,
+  searchBy,
   onClick,
 }: {
   readonly spec: Spec
   readonly resource: string
-  readonly scearchBy: string
+  readonly searchBy: string
   onClick(value: string): void
 }) => {
   const [state, setState] = React.useState<{
@@ -35,7 +35,7 @@ export const SearchComponent = <Spec extends Mixed & HasProps>({
       const suggestions = await http.get(
         {
           resource,
-          query: `${scearchBy}_like=^${value}`,
+          query: `${searchBy}_like=^${value}`,
         },
         array(spec),
       )
@@ -46,10 +46,10 @@ export const SearchComponent = <Spec extends Mixed & HasProps>({
   }
 
   const getSuggestionValue = (suggestion: TypeOf<typeof spec>) =>
-    suggestion[scearchBy]
+    suggestion[searchBy]
 
   const renderSuggestion = (suggestion: TypeOf<typeof spec>) => (
-    <div>{`${suggestion[scearchBy]}`}</div>
+    <div>{`${suggestion[searchBy]}`}</div>
   )
 
   const onChange = (
@@ -64,7 +64,7 @@ export const SearchComponent = <Spec extends Mixed & HasProps>({
   }
 
   const inputProps = {
-    placeholder: `Type a ${scearchBy}`,
+    placeholder: `Type a ${searchBy}`,
     value: state.value,
     onChange,
   }
