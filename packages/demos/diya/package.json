@@ -29,6 +29,7 @@
     "@types/react-dom": "16.9.0",
     "@types/react-router-dom": "4.3.4",
     "@types/yup": "0.26.23",
+    "bulmaswatch": "^0.7.5",
     "cross-env": "^5.2.0",
     "eslint": "6.2.1",
     "husky": "3.0.4",
