@@ -2,7 +2,7 @@
   .menu-list-label {
     display: none;
   }
-  .is-active {
+  &.is-active {
     display: contents;
   }
 }

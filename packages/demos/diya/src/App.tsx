@@ -1,4 +1,4 @@
-import 'bulma/css/bulma.css'
+import 'bulma/bulma.sass'
 import React from 'react'
 import {
   Column,
@@ -20,7 +20,7 @@ import {
   UserRoutes,
   VehicleRoutes,
 } from './pages'
-import './styles/css/custom.css'
+import './styles/custom.scss'
 
 export const App = () => (
   <Router variant="browser">
