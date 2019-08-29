@@ -4,14 +4,9 @@ import React from 'react'
 import Autosuggest from 'react-autosuggest'
 
 export interface SearchProps<T> {
-  readonly resource: string
   readonly searchBy: string
   onSearch(value: string): void
-  suggestions(
-    value: string,
-    resource: string,
-    searchBy: string,
-  ): Promise<readonly T[]>
+  suggestions(value: string, searchBy: string): Promise<readonly T[]>
 }
 
 interface SearchState<T> {
@@ -20,7 +15,6 @@ interface SearchState<T> {
 }
 
 export function Search<T>({
-  resource,
   searchBy,
   onSearch,
   suggestions,
@@ -35,7 +29,7 @@ export function Search<T>({
       return []
     }
 
-    return suggestions(value, resource, searchBy)
+    return suggestions(value, searchBy)
   }
 
   return (
