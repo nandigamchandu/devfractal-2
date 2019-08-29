@@ -16,16 +16,18 @@ export interface SearchProps<Spec extends Mixed> {
   onClick(value: string): void
 }
 
+interface SearchState<T> {
+  readonly value: string
+  readonly suggestions: readonly T[]
+}
+
 export function Search<Spec extends Mixed>({
   spec,
   resource,
   searchBy,
   onClick,
 }: SearchProps<Spec>): JSX.Element {
-  const [state, setState] = React.useState<{
-    value: string
-    suggestions: Array<TypeOf<typeof spec>>
-  }>({
+  const [state, setState] = React.useState<SearchState<TypeOf<Spec>>>({
     value: '',
     suggestions: [],
   })
