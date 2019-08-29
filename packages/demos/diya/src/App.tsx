@@ -22,26 +22,26 @@ import {
 } from './pages'
 
 export const App = () => (
-  <Router variant="browser">
-    <Columns>
-      <SideMenu />
+         <Router variant="browser">
+           <Columns className="is-mobile">
+             <SideMenu />
 
-      <Column>
-        <SimpleRedirect from="/" to="/drivers" />
+             <Column>
+               <SimpleRedirect from="/" to="/drivers" />
 
-        <DriverRoutes />
-        <BatteryRoutes />
-        <ClientRoutes />
-        <VehicleRoutes />
-        <EmployeeRoutes />
-        <GeoFenceRoutes />
-        <UserRoutes />
-        <EVSRoutes />
+               <DriverRoutes />
+               <BatteryRoutes />
+               <ClientRoutes />
+               <VehicleRoutes />
+               <EmployeeRoutes />
+               <GeoFenceRoutes />
+               <UserRoutes />
+               <EVSRoutes />
 
-        <InvoiceListRoute />
-        <PlanRouteMapRoute />
-        <TripListRoute />
-      </Column>
-    </Columns>
-  </Router>
-)
+               <InvoiceListRoute />
+               <PlanRouteMapRoute />
+               <TripListRoute />
+             </Column>
+           </Columns>
+         </Router>
+       )
