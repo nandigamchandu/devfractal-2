@@ -5,6 +5,10 @@ import React from 'react'
 import Autosuggest from 'react-autosuggest'
 import { http as httpAPI } from 'technoidentity-devfractal'
 
+const http: ReturnType<typeof httpAPI> = httpAPI({
+  baseURL: 'http://localhost:9999',
+})
+
 export interface SearchProps<Spec extends Mixed> {
   readonly spec: Spec
   readonly resource: string
@@ -24,10 +28,6 @@ export function Search<Spec extends Mixed>({
   }>({
     value: '',
     suggestions: [],
-  })
-
-  const http: ReturnType<typeof httpAPI> = httpAPI({
-    baseURL: 'http://localhost:9999',
   })
 
   const getSuggestions = async (value: string) => {
