@@ -1,6 +1,6 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Icon } from 'devfractal-ui-core'
-import { array, Mixed, TypeOf } from 'io-ts'
+import { Mixed, readonlyArray, TypeOf } from 'io-ts'
 import React from 'react'
 import Autosuggest from 'react-autosuggest'
 import { http as httpAPI } from 'technoidentity-devfractal'
@@ -13,7 +13,7 @@ export interface SearchProps<Spec extends Mixed> {
   readonly spec: Spec
   readonly resource: string
   readonly searchBy: string
-  onClick(value: string): void
+  onSearch(value: string): void
 }
 
 interface SearchState<T> {
@@ -25,63 +25,47 @@ export function Search<Spec extends Mixed>({
   spec,
   resource,
   searchBy,
-  onClick,
+  onSearch,
 }: SearchProps<Spec>): JSX.Element {
   const [state, setState] = React.useState<SearchState<TypeOf<Spec>>>({
     value: '',
     suggestions: [],
   })
 
-  const getSuggestions = async (value: string) => {
-    const inputLength = value.length
-    try {
-      const suggestions = await http.get(
-        {
-          resource,
-          query: `${searchBy}_like=^${value}`,
-        },
-        array(spec),
-      )
-      return inputLength === 0 ? [] : suggestions
-    } catch (err) {
-      throw new Error(err)
+  async function fetchSuggestions(value: string): Promise<TypeOf<Spec>> {
+    if (value.length === 0) {
+      return []
     }
+
+    return http.get(
+      {
+        resource,
+        query: `${searchBy}_like=^${value}`,
+      },
+      readonlyArray(spec),
+    )
   }
 
-  const getSuggestionValue = (suggestion: TypeOf<typeof spec>) =>
-    suggestion[searchBy]
-
-  const renderSuggestion = (suggestion: TypeOf<typeof spec>) => (
-    <div>{`${suggestion[searchBy]}`}</div>
-  )
-
-  const onChange = (
-    _event: React.FormEvent<any>,
-    { newValue }: { newValue: string },
-  ) => {
-    setState({ ...state, value: newValue })
-  }
-
-  const onSuggestionsFetchRequested = async ({ value }: { value: string }) => {
-    setState({ value, suggestions: await getSuggestions(value) })
-  }
-
-  const inputProps = {
-    placeholder: `Type a ${searchBy}`,
-    value: state.value,
-    onChange,
-  }
   return (
     <>
       <Autosuggest
         suggestions={state.suggestions}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsFetchRequested={async ({ value }) => {
+          const suggestions = await fetchSuggestions(value)
+          setState({ value, suggestions })
+        }}
         alwaysRenderSuggestions={true}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
+        getSuggestionValue={suggestion => suggestion[searchBy]}
+        renderSuggestion={suggestion => <div>{`${suggestion[searchBy]}`}</div>}
+        inputProps={{
+          placeholder: `Type a ${searchBy}`,
+          value: state.value,
+          onChange: (_, { newValue }) =>
+            setState({ ...state, value: newValue }),
+        }}
       />
-      <button type="button" onClick={() => onClick(state.value)}>
+
+      <button type="button" onClick={() => onSearch(state.value)}>
         <Icon icon={faSearch} />
       </button>
     </>
