@@ -1,3 +1,3 @@
 export * from './HeadTitle'
+export * from './Search'
 export * from './SideMenu'
-export * from './SearchComponent'
