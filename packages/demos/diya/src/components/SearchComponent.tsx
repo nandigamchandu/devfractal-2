@@ -4,19 +4,20 @@ import { array, Mixed, TypeOf } from 'io-ts'
 import React from 'react'
 import Autosuggest from 'react-autosuggest'
 import { http as httpAPI } from 'technoidentity-devfractal'
-import { HasProps } from 'technoidentity-utils'
 
-export const Search = <Spec extends Mixed & HasProps>({
-  spec,
-  resource,
-  searchBy,
-  onClick,
-}: {
+export interface SearchProps<Spec extends Mixed> {
   readonly spec: Spec
   readonly resource: string
   readonly searchBy: string
   onClick(value: string): void
-}) => {
+}
+
+export function Search<Spec extends Mixed>({
+  spec,
+  resource,
+  searchBy,
+  onClick,
+}: SearchProps<Spec>): JSX.Element {
   const [state, setState] = React.useState<{
     value: string
     suggestions: Array<TypeOf<typeof spec>>
