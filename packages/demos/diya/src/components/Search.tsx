@@ -1,19 +1,17 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Icon } from 'devfractal-ui-core'
-import { Mixed, readonlyArray, TypeOf } from 'io-ts'
 import React from 'react'
 import Autosuggest from 'react-autosuggest'
-import { http as httpAPI } from 'technoidentity-devfractal'
 
-const http: ReturnType<typeof httpAPI> = httpAPI({
-  baseURL: 'http://localhost:9999',
-})
-
-export interface SearchProps<Spec extends Mixed> {
-  readonly spec: Spec
+export interface SearchProps<T> {
   readonly resource: string
   readonly searchBy: string
   onSearch(value: string): void
+  suggestions(
+    value: string,
+    resource: string,
+    searchBy: string,
+  ): Promise<readonly T[]>
 }
 
 interface SearchState<T> {
@@ -21,29 +19,23 @@ interface SearchState<T> {
   readonly suggestions: readonly T[]
 }
 
-export function Search<Spec extends Mixed>({
-  spec,
+export function Search<T>({
   resource,
   searchBy,
   onSearch,
-}: SearchProps<Spec>): JSX.Element {
-  const [state, setState] = React.useState<SearchState<TypeOf<Spec>>>({
+  suggestions,
+}: SearchProps<T>): JSX.Element {
+  const [state, setState] = React.useState<SearchState<T>>({
     value: '',
     suggestions: [],
   })
 
-  async function fetchSuggestions(value: string): Promise<TypeOf<Spec>> {
+  async function fetchSuggestions(value: string): Promise<readonly T[]> {
     if (value.length === 0) {
       return []
     }
 
-    return http.get(
-      {
-        resource,
-        query: `${searchBy}_like=^${value}`,
-      },
-      readonlyArray(spec),
-    )
+    return suggestions(value, resource, searchBy)
   }
 
   return (
