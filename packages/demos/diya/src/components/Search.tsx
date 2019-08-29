@@ -6,7 +6,7 @@ import Autosuggest from 'react-autosuggest'
 import { http as httpAPI } from 'technoidentity-devfractal'
 import { HasProps } from 'technoidentity-utils'
 
-export const Search = <Spec extends Mixed & HasProps>({
+export const SearchComponent = <Spec extends Mixed & HasProps>({
   spec,
   resource,
   searchBy,
