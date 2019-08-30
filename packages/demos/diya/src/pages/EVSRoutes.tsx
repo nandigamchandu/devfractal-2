@@ -3,8 +3,8 @@ import { All, Create, links, paths } from 'technoidentity-devfractal'
 import { evAPI } from '../common'
 import { EVSList, RaiseRequestForm } from '../views'
 
-const ps = paths('employees')
-const ls = links('employees')
+const ps = paths('evs')
+const ls = links('evs')
 
 const RaiseRequestRoute: React.FC = () => (
   <Create
