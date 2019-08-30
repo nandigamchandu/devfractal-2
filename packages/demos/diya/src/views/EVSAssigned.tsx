@@ -6,7 +6,6 @@ import {
   ButtonsGroup,
   CreateLink,
   Icon,
-  links,
   listComponent,
   SimpleTable,
 } from 'technoidentity-devfractal'
@@ -27,7 +26,7 @@ const Actions = () => (
   </ButtonsGroup>
 )
 
-const evsLinks = links('evs')
+// const evsLinks = links('evs')
 
 export const EVSList = listComponent(EVS, ({ data: evsList }) => (
   <>

@@ -1,32 +1,15 @@
 import 'bulma/css/bulma.css'
 import React from 'react'
-import { BrowserRouter, Route as Routes } from 'react-router-dom'
 import {
   All,
   Column,
   Columns,
   Create,
-  Route,
   Router,
   SimpleRedirect,
-  Title,
 } from 'technoidentity-devfractal'
 import { evAPI, planRouteAPI, tripAPI } from './common'
-import { SideMenu } from './components'
 import { DispatcherSideMenu } from './components/DispatcherSideMenu'
-import {
-  BatteryRoutes,
-  ClientRoutes,
-  DriverRoutes,
-  EmployeeRoutes,
-  EVSRoutes,
-  GeoFenceRoutes,
-  InvoiceListRoute,
-  PlanRouteMapRoute,
-  TripListRoute,
-  UserRoutes,
-  VehicleRoutes,
-} from './pages'
 import { EVSList, PlanRouteList, RaiseRequestForm, TripList } from './views'
 
 // export const App = () => (
