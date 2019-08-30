@@ -7,7 +7,7 @@ import {
   Client,
   Driver,
   Employee,
-  Ev,
+  EVS,
   GeoFence,
   Invoice,
   PlanRoute,
@@ -31,7 +31,7 @@ export const vehicleAPI = api(Vehicle, 'vehicles')
 export const batteryAPI = api(Battery, 'batteries')
 export const clientAPI = api(Client, 'clients')
 export const userAPI = api(User, 'users')
-export const evAPI = api(Ev, 'evs')
+export const evAPI = api(EVS, 'evs')
 export const planRouteAPI = api(PlanRoute, 'routes')
 export const employeeAPI = api(Employee, 'employees')
 export const invoiceAPI = api(Invoice, 'invoices')
