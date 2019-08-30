@@ -1,26 +1,21 @@
 import { faBus, faMapMarker } from '@fortawesome/free-solid-svg-icons'
-import { string } from 'io-ts'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {
   Button,
   ButtonsGroup,
-  component,
   CreateLink,
   Icon,
   links,
   listComponent,
   SimpleTable,
 } from 'technoidentity-devfractal'
-import { req } from 'technoidentity-utils'
-import { Ev } from '../common'
+import { EVS } from '../common'
 import { HeadTitle } from '../components'
 
-const ActionsRoutesProps = req({ editTo: string })
-
-const Actions = component(ActionsRoutesProps, ({ editTo }) => (
+const Actions = () => (
   <ButtonsGroup>
-    <Link to={editTo} className="button is-small is-rounded">
+    <Link to={'/planRoute'} className="button is-small is-rounded">
       <Icon icon={faMapMarker} />
       <div>Plan Route</div>
     </Link>
@@ -30,28 +25,28 @@ const Actions = component(ActionsRoutesProps, ({ editTo }) => (
       <div>Location</div>
     </Button>
   </ButtonsGroup>
-))
+)
 
 const evsLinks = links('evs')
 
-export const EVSList = listComponent(Ev, ({ data: evsList }) => (
+export const EVSList = listComponent(EVS, ({ data: evsList }) => (
   <>
-    <HeadTitle>EVS assigned</HeadTitle>
+    <HeadTitle>EVs Assigned</HeadTitle>
 
-    <CreateLink alignment="right" variant="primary" to={evsLinks.create}>
+    <CreateLink alignment="right" variant="primary" to={'/raiseRequest'}>
       {' '}
       Request New EV
     </CreateLink>
 
     <SimpleTable
       data={evsList}
-      headers={['driverName', 'Actions']}
-      headerLabels={['Driver', 'Actions']}
+      headers={['driverName', 'status', 'Actions']}
+      headerLabels={['Driver', 'Status', 'Actions']}
       striped
     >
       {key =>
         // tslint:disable-next-line: no-null-keyword
-        key === 'Actions' ? <Actions editTo={`/planRoute`} /> : null
+        key === 'Actions' ? <Actions /> : null
       }
     </SimpleTable>
   </>
