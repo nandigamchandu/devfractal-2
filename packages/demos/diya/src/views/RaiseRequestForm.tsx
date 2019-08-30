@@ -1,41 +1,44 @@
 import React from 'react'
 import {
-  component,
-  formProps,
+  Column,
+  Columns,
+  formComponent,
   Section,
   Simple,
 } from 'technoidentity-devfractal'
-import { empty } from 'technoidentity-utils'
-import { Ev } from '../common'
+import { EVS } from '../common'
 import { HeadTitle } from '../components'
 
-const RaiseRequestFormProps = formProps(Ev)
+export const RaiseRequestForm = formComponent(EVS, ({ initial, onSubmit }) => (
+  <>
+    <HeadTitle>Raise Request</HeadTitle>
 
-export const RaiseRequestForm = component(
-  RaiseRequestFormProps,
-  ({ initial = empty(Ev), onSubmit }) => (
-    <>
-      <HeadTitle>Raise Request</HeadTitle>
+    <Section>
+      <Simple.Form initialValues={initial} onSubmit={onSubmit}>
+        <Columns>
+          <Column>
+            <Simple.Select
+              name="additionalEvRequired"
+              label="Additional Ev required"
+              fullWidth
+            >
+              <option>select</option>
+            </Simple.Select>
 
-      <Section>
-        <Simple.Form initialValues={initial} onSubmit={onSubmit}>
-          <Simple.Select
-            name="additionalEvRequired"
-            label="Additional Ev required"
-          >
-            <option>select</option>
-          </Simple.Select>
-
-          <Simple.Select name="frequency">
-            <option value="once">Once</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-            <option value="yearly">yearly</option>
-          </Simple.Select>
-
-          <Simple.FormButtons />
-        </Simple.Form>
-      </Section>
-    </>
-  ),
-)
+            <Simple.Select name="frequency" fullWidth>
+              <option value="once">Once</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">yearly</option>
+            </Simple.Select>
+          </Column>
+          <Column>
+            <Simple.Date name="startDate" fullWidth />
+            <Simple.Date name="endDate" fullWidth />
+          </Column>
+        </Columns>
+        <Simple.FormButtons alignment="centered" />
+      </Simple.Form>
+    </Section>
+  </>
+))
