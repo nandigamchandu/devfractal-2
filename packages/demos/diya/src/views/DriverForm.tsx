@@ -12,6 +12,7 @@ import {
   required,
   Section,
   Simple,
+  Tile,
   Title,
 } from 'technoidentity-devfractal'
 import { Driver } from '../common'
@@ -77,8 +78,8 @@ export const DriverForm = formComponent(
                 validations={[required()]}
               />
               <Simple.RadioGroup name="verified" defaultValue="pending">
-                <Radio value="yes">yes</Radio>
-                <Radio value="pending">In process</Radio>
+                <Radio value="yes"> yes</Radio>
+                <Radio value="pending"> In process</Radio>
               </Simple.RadioGroup>
             </Column>
 
@@ -87,18 +88,21 @@ export const DriverForm = formComponent(
                 Profile Photo
               </Title>
 
-              <Box>
-                <Media>
-                  <MediaContent>
-                    <Image
-                      size="128x128"
-                      src="https://bulma.io/images/placeholders/128x128.png"
-                    />
-                  </MediaContent>
-                </Media>
-              </Box>
-
-              <Button variant="dark">Upload Photo</Button>
+              <Tile>
+                <Box>
+                  <Media>
+                    <MediaContent>
+                      <Image
+                        size="128x128"
+                        src="https://bulma.io/images/placeholders/128x128.png"
+                      />
+                    </MediaContent>
+                  </Media>
+                </Box>
+              </Tile>
+              <div style={{ padding: '15px' }}>
+                <Button variant="dark">Upload Photo</Button>
+              </div>
               <div style={{ padding: '15px' }}>
                 <Simple.Text name="emergencyContactPerson" />
                 <Simple.Text name="emergencyContactNumber" />
