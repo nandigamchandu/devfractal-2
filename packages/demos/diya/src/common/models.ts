@@ -130,14 +130,20 @@ const Frequency = keyof({
   yearly: true,
 })
 
-export const Ev = props(
-  { id: string },
-  { driverName: string, additionalEVsRequired: Int, frequency: Frequency },
+const RouteStatus = keyof({ enroute: true, complete: true })
+
+export const EVS = props(
+  { id: string, status: RouteStatus },
+  {
+    driverName: string,
+    additionalEVsRequired: Int,
+    frequency: Frequency,
+    startDate: ISODate,
+    endDate: ISODate,
+  },
 )
 
-export type Ev = TypeOf<typeof Ev>
-
-const RouteStatus = keyof({ enroute: true, complete: true })
+export type EVS = TypeOf<typeof EVS>
 
 export const PlanRoute = props(
   { id: string },
