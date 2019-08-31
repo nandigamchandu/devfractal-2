@@ -1,11 +1,10 @@
 import { format } from 'date-fns'
-import { boolean } from 'io-ts'
-import { date } from 'io-ts-types/lib/date'
 import React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 import {
   Button,
   CheckBox,
+  CreateLink,
   Field,
   Table,
   TableBody,
@@ -14,7 +13,7 @@ import {
   Th,
   Tr,
 } from 'technoidentity-devfractal'
-import { CreateLink } from 'technoidentity-devfractal'
+import { boolean, date } from 'technoidentity-spec'
 import { capitalize } from 'technoidentity-utils'
 import { Todo } from './common'
 
