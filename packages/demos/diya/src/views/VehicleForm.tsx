@@ -1,5 +1,5 @@
 import React from 'react'
-import 'react-datepicker/dist/react-datepicker.css'
+// import 'react-datepicker/dist/react-datepicker.css'
 import {
   Box,
   Button,
@@ -16,6 +16,7 @@ import {
 } from 'technoidentity-devfractal'
 import { Vehicle } from '../common'
 import { HeadTitle } from '../components'
+import '../stylesheets/datepicker-bulma.scss'
 
 export const VehicleForm = formComponent(
   Vehicle,
