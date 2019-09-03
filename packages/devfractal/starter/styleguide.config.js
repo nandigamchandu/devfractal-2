@@ -24,12 +24,12 @@ module.exports = {
       },
     },
   },
-  require: [path.join(__dirname)],
+  require: [path.join(__dirname, bulmaPath)],
   propsParser: require('react-docgen-typescript').withCustomConfig(
     './tsconfig.json',
     {
       propFilter: props =>
-        props.parent && props.parent.fileName.startsWith('devfractal'),
+        !(props.parent && props.parent.fileName.includes('node_modules')),
     },
   ).parse,
 
