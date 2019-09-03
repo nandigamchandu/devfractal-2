@@ -3,6 +3,7 @@
   "version": "1.2.18",
   "private": true,
   "scripts": {
+    "cypress": "cypress open",
     "precommit": "yarn lint-staged",
     "prepush": "yarn validate:noFix",
     "start": "parcel index.html --open",
@@ -42,6 +43,7 @@
     "@types/react": "16.9.2",
     "@types/yup": "0.26.23",
     "cross-env": "5.2.0",
+    "cypress": "^3.4.1",
     "eslint": "6.3.0",
     "husky": "3.0.4",
     "jest": "24.9.0",
