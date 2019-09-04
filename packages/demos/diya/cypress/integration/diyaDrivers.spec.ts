@@ -1,5 +1,4 @@
 /// <reference types="Cypress" />
-
 context('Driver Module', () => {
 
     it('Navigate to diya home page', () => {
@@ -9,10 +8,10 @@ context('Driver Module', () => {
     })
     
     it('Add Driver - Create driver Page - Submit button for valid data', () => {
-    
-        cy.get('#root > div > div:nth-child(2) > section > div > a').click()
-        cy.get('#root > div > div:nth-child(2) > section > form > div.columns > div:nth-child(1) > div:nth-child(2) > div > input').type('Anusha')
-        cy.get('#root > div > div:nth-child(2) > section > form > div.columns > div:nth-child(1) > div:nth-child(3) > div > input').type('9287382749')
+
+        cy.getByText(/add driver/i).click()
+        cy.getAllByText(/^name/i).siblings().children().type('chandu')
+        cy.getAllByText(/^phone/i).siblings().children().type('9287382749')
         cy.get('#root > div > div:nth-child(2) > section > form > div.columns > div:nth-child(1) > div:nth-child(4) > div > input').type('7632hgashd')
         cy.get('#root > div > div:nth-child(2) > section > form > div.columns > div:nth-child(1) > div:nth-child(5) > div > input').type('83bhds732')
         cy.get('#root > div > div:nth-child(2) > section > form > div.columns > div:nth-child(1) > div:nth-child(6) > div > div > select').select('evening')
