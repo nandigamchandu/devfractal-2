@@ -29,7 +29,6 @@ context('Driver Module', () => {
 
   it('Check Create Driver title in Add Driver page', () => {
     cy.contains('Create Driver')
-    expect(2).to.equal(2)
   })
 
   it('Add Driver - Create driver Page - Submit button for valid data', () => {
@@ -52,7 +51,14 @@ context('Driver Module', () => {
     cy.get('select[name="relation"]').select('father')
     cy.getAllByText(/submit/i).click()
   })
-
+  it('Validating added driver- check whether the added driver is reflecting or not in table', () => {
+    cy.getByText(/next/i)
+      .click()
+      .click()
+      .click()
+      .click()
+    cy.contains('ashika')
+  })
   it('Add Driver - Create driver Page - Reset Functionality', () => {
     cy.getByText(/add driver/i).click()
     cy.get('input[name="name"]').type('anusha')
@@ -139,6 +145,51 @@ context('Driver Module', () => {
   it('Back to Drivers home page', () => {
     cy.go('back')
   })
+  it('Assign page navigation', () => {
+    cy.getByText('ashika')
+      .siblings()
+      .last()
+      .children()
+      .first()
+      .click()
+  })
+  it('Check Assign Driver title in  assign driver page', () => {
+    cy.contains('Assign')
+  })
+  it('Validations for empty fields in assign button', () => {
+    cy.getAllByText(/submit/i).click()
+  })
+  it('back to drivers list for further testing', () => {
+    cy.go('back')
+  })
+  it('Assignin driver for valid data', () => {
+    cy.getByText('ashika')
+      .siblings()
+      .last()
+      .children()
+      .first()
+      .click()
+    cy.get('select[name="vehicleNumber"]').select('TSO1A0429')
+    cy.get('input[name="batteryId"]').type('12345')
+    cy.get('input[name="client"]').type('Amazon')
+    cy.getAllByText(/submit/i).click()
+  })
+  it('back to drivers list for further testing', () => {
+    cy.go('back')
+  })
+  it('Reset functionality for assign page', () => {
+    cy.getByText('ashika')
+      .siblings()
+      .last()
+      .children()
+      .first()
+      .click()
+    cy.get('select[name="vehicleNumber"]').select('TSO1A0429')
+    cy.get('input[name="batteryId"]').type('12345')
+    cy.get('input[name="client"]').type('Amazon')
+    cy.getAllByText(/reset/i).click()
+  })
+
   it('Navigate to Velhicles table', () => {
     cy.getByText(/^vehicles/i).click()
   })
