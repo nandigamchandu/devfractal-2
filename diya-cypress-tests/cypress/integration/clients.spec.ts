@@ -1,8 +1,8 @@
-describe('Logging In - XHR Web Form', () => {
+describe('Navigate to clients page', () => {
   const url = '/clients'
   context('Clients Module', () => {
     it('Navigate to clients page home page', () => {
-      cy.visit('/clients')
+      cy.visit(url)
     })
 
     it('Check clients title in clients home page', () => {
@@ -117,7 +117,7 @@ describe('Logging In - XHR Web Form', () => {
       cy.visit(url)
     })
 
-    it('Edit client page navigation', () => {
+    it('Edit client page navigation and validations for null data', () => {
       cy.getByText(/next/i)
         .click()
         .click()
