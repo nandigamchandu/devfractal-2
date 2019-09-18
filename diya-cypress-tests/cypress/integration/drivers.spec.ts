@@ -1,8 +1,10 @@
 /// <reference types="Cypress" />
 
-context('Driver Module', () => {
-  it('Navigate to diya home page', () => {
-    cy.visit('http://localhost:1234')
+context('navigation to Drivers page', () => {
+  const url = '/drivers'
+  it('Navigate to Drivers page', () => {
+    cy.visit(url)
+    cy.url().should('include', 'drivers')
   })
 
   it('Check Drivers title in Drivers home page', () => {
@@ -22,9 +24,13 @@ context('Driver Module', () => {
   it('Back to Drivers page for further testing', () => {
     cy.go('back')
   })
+  it('Check whether its navigating to drivers list page or not', () => {
+    cy.url().should('include', 'drivers')
+  })
 
-  it('Navigate to Add driver page', () => {
+  it('Navigate to Add driver page and check its navigating or not', () => {
     cy.getByText(/add driver/i).click()
+    cy.url().should('include', 'drivers/new')
   })
 
   it('Check Create Driver title in Add Driver page', () => {
@@ -51,6 +57,9 @@ context('Driver Module', () => {
     cy.get('select[name="relation"]').select('father')
     cy.getAllByText(/submit/i).click()
   })
+  it('Verify whether user navigating to drivers list page or not while submitting the form', () => {
+    cy.url().should('include', 'drivers')
+  })
   it('Validating added driver- check whether the added driver is reflecting or not in table', () => {
     cy.getByText(/next/i)
       .click()
@@ -72,7 +81,7 @@ context('Driver Module', () => {
   })
 
   it('Back to Drivers page', () => {
-    cy.go('back')
+    cy.visit(url)
   })
 
   it('Edit driver page navigation', () => {
@@ -89,6 +98,10 @@ context('Driver Module', () => {
       .first()
       .click()
   })
+  it('Check whether its navigating to Edit driver page or not', () => {
+    cy.url().should('include', 'edit')
+  })
+
   it('Check Edit Driver title in Edit Driver page', () => {
     cy.contains('Edit Driver')
   })
@@ -107,6 +120,9 @@ context('Driver Module', () => {
       .clear()
       .type('ICIC2938')
     cy.getAllByText(/submit/i).click()
+  })
+  it('Verify whether user navigating to drivers list page or not while submitting the form', () => {
+    cy.url().should('include', 'drivers')
   })
 
   it('Edit driver page - validations for null data', () => {
@@ -145,7 +161,7 @@ context('Driver Module', () => {
   it('Back to Drivers home page', () => {
     cy.go('back')
   })
-  it('Assign page navigation', () => {
+  it('Assign page navigation and check it it navigating to Assign page or not', () => {
     cy.getByText('ashika')
       .siblings()
       .last()
