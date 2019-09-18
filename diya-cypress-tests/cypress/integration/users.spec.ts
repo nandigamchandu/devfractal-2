@@ -1,8 +1,9 @@
 describe('Navigate to Users page', () => {
-  const url = '/Users'
+  const url = '/users'
   context('Users Module', () => {
     it('Navigate to Users page', () => {
       cy.visit(url)
+      cy.url().should('include', 'users')
     })
     it('Check Users title in Users home page', () => {
       cy.contains('Users')
@@ -20,6 +21,9 @@ describe('Navigate to Users page', () => {
 
     it('Back to Users page for further testing', () => {
       cy.go('back')
+    })
+    it('Check whether its navigating to users list page or not', () => {
+      cy.url().should('include', 'users')
     })
 
     it('Navigate to Add Users page', () => {
@@ -49,7 +53,9 @@ describe('Navigate to Users page', () => {
       cy.get('input[name="emergencyContactNumber"]').type('984867582')
       cy.get('select[name="relation"]').select('father')
       cy.getAllByText(/submit/i).click()
-      cy.visit(url)
+    })
+    it('Verify whether user navigating to users list page or not while submitting the form', () => {
+      cy.url().should('include', 'users')
     })
     it('Validating added User- check whether the added User is reflecting or not in table', () => {
       cy.getByText(/next/i)
@@ -72,7 +78,7 @@ describe('Navigate to Users page', () => {
     })
 
     it('Back to Users page', () => {
-      cy.go('back')
+      cy.visit(url)
     })
 
     it('Edit Users page navigation', () => {
@@ -89,6 +95,10 @@ describe('Navigate to Users page', () => {
         .first()
         .click()
     })
+    it('Check whether its navigating to Edit Users page or not', () => {
+      cy.url().should('include', 'edit')
+    })
+
     it('Check Edit Users title in Edit Users page', () => {
       cy.contains('Edit Users')
     })
@@ -108,7 +118,9 @@ describe('Navigate to Users page', () => {
         .type('ICIC2938')
       cy.getAllByText(/submit/i).click()
     })
-
+    it('Verify whether user navigating to users list page or not while submitting the form', () => {
+      cy.url().should('include', 'users')
+    })
     it('Edit Users page - validations for null data', () => {
       cy.getByText(/next/i)
         .click()
@@ -191,7 +203,7 @@ describe('Navigate to Users page', () => {
     })
 
     it('Navigate to Velhicles table', () => {
-      cy.getByText(/^vehicles/i).click()
+      cy.getByText(/^invoices/i).click()
     })
   })
 })
