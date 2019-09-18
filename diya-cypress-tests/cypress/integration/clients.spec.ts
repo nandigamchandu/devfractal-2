@@ -22,9 +22,13 @@ describe('Navigate to clients page', () => {
     it('Back to clients page for further testing', () => {
       cy.go('back')
     })
+    it('Check whether its navigating to clients list page or not', () => {
+      cy.url().should('include', 'clients')
+    })
 
-    it('Navigate to Add clent page', () => {
+    it('Navigate to Add clent page and check its navigating or not', () => {
       cy.getByText(/add client/i).click()
+      cy.url().should('include', 'clients/new')
     })
 
     it('Check Create client title in Add client page', () => {
@@ -46,6 +50,9 @@ describe('Navigate to clients page', () => {
         .type('45')
       cy.getAllByText(/submit/i).click()
     })
+    it('Verify whether user navigating to clients list page or not while submitting the form', () => {
+      cy.url().should('include', 'clients')
+    })
     it('Validating added client- check whether the added client is reflecting or not in table', () => {
       cy.getByText(/next/i)
         .click()
@@ -54,11 +61,6 @@ describe('Navigate to clients page', () => {
         .click()
       cy.contains('Amazon')
     })
-
-    it('Back to client page', () => {
-      cy.go('back')
-    })
-
     it('Add client - Create client Page - Reset Functionality', () => {
       cy.getByText(/add client/i).click()
       cy.get('input[name="clientName"]').type('Amazon')
@@ -77,11 +79,15 @@ describe('Navigate to clients page', () => {
     })
 
     it('Back to client page', () => {
-      cy.go('back')
+      cy.visit(url)
     })
 
     it('Edit driver page navigation', () => {
-      cy.getByText(/next/i).click()
+      cy.getByText(/next/i)
+        .click()
+        .click()
+        .click()
+        .click()
       cy.contains('Amazon')
       cy.getByText('Amazon')
         .siblings()
@@ -95,7 +101,9 @@ describe('Navigate to clients page', () => {
     it('Check Edit client title in Edit client page', () => {
       cy.contains('Edit client')
     })
-
+    it('Check whether its navigating to Edit client page or not', () => {
+      cy.url().should('include', 'edit')
+    })
     it('Edit client page', () => {
       cy.get('input[name="numberOfEVS"]')
         .clear()
@@ -112,9 +120,8 @@ describe('Navigate to clients page', () => {
         .type('anusha@g.com')
       cy.getAllByText(/submit/i).click()
     })
-
-    it('Back to client page', () => {
-      cy.visit(url)
+    it('Verify whether user navigating to clients list page or not while submitting the form', () => {
+      cy.url().should('include', 'clients')
     })
 
     it('Edit client page navigation and validations for null data', () => {
