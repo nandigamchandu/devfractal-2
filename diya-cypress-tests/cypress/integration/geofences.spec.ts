@@ -3,6 +3,7 @@ describe('Navigate to Geofence page', () => {
   context('GeoFence Module', () => {
     it('Navigate to Geofences page home page', () => {
       cy.visit(url)
+      cy.url().should('include', 'geo_fences')
     })
 
     it('Check clients title in clients home page', () => {
@@ -23,8 +24,13 @@ describe('Navigate to Geofence page', () => {
       cy.go('back')
     })
 
-    it('Navigate to Add Geofence page', () => {
+    it('Check whether its navigating to geofences list page or not', () => {
+      cy.url().should('include', 'geo_fences')
+    })
+
+    it('Navigate to Add Geofence page and check its navigating or not', () => {
       cy.getByText(/Create GeoFence/i).click()
+      cy.url().should('include', 'geo_fences/new')
     })
 
     it('Check Create GeoFence title in Add GeoFence page', () => {
@@ -38,6 +44,11 @@ describe('Navigate to Geofence page', () => {
       cy.get('textarea[name="comments"]').type('there are different things')
       cy.getAllByText(/submit/i).click()
     })
+
+    it('Verify whether user navigating to geofences list page or not while submitting the form', () => {
+      cy.url().should('include', 'geo_fences')
+    })
+
     it('Validating added GeoFence- check whether the added GeoFence is reflecting or not in table and verifyining forward pagination', () => {
       cy.getByText(/next/i)
         .click()
@@ -84,6 +95,10 @@ describe('Navigate to Geofence page', () => {
         .click()
     })
 
+    it('Check whether its navigating to Edit GeoFence page or not', () => {
+      cy.url().should('include', 'edit')
+    })
+
     it('Check Edit GeoFence title in Edit GeoFence page', () => {
       cy.contains('Edit GeoFence')
     })
@@ -95,10 +110,11 @@ describe('Navigate to Geofence page', () => {
       cy.get('input[name="assignClient"]')
         .clear()
         .type('Amazon')
+      cy.getAllByText(/submit/i).click()
     })
 
-    it('Back to GeoFence page', () => {
-      cy.visit(url)
+    it('Verify whether user navigating to geofences list page or not while submitting the form', () => {
+      cy.url().should('include', 'geo_fences')
     })
 
     it('Edit client page navigation and validations for null data', () => {
