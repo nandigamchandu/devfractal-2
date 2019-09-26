@@ -4,10 +4,11 @@ import React from 'react'
 import Autosuggest from 'react-autosuggest'
 import { http as httpAPI } from 'technoidentity-devfractal'
 import { Mixed, readonlyArray } from 'technoidentity-utils'
+import { fakeBaseURL } from '../config'
 import '../stylesheets/auto-suggestion.scss'
 
 const http: ReturnType<typeof httpAPI> = httpAPI({
-  baseURL: 'http://localhost:9999',
+  baseURL: fakeBaseURL,
 })
 
 export const fetchSuggestions = async <Spec extends Mixed>(
@@ -17,18 +18,14 @@ export const fetchSuggestions = async <Spec extends Mixed>(
   spec: Spec,
 ) => {
   const inputLength = value.length
-  try {
-    const suggestions = await http.get(
-      {
-        resource,
-        query: `${searchBy}_like=^${value}`,
-      },
-      readonlyArray(spec),
-    )
-    return inputLength === 0 ? [] : suggestions
-  } catch (err) {
-    throw new Error(err)
-  }
+  const suggestions = await http.get(
+    {
+      resource,
+      query: `${searchBy}_like=^${value}`,
+    },
+    readonlyArray(spec),
+  )
+  return inputLength === 0 ? [] : suggestions
 }
 
 export interface SearchProps<T> {
@@ -69,7 +66,7 @@ export function Search<T>({
             onSearch(newValue)
           },
         }}
-        renderInputComponent={inputProps => (
+        renderInputComponent={({ ref, ...inputProps }) => (
           <>
             <Input
               {...inputProps}
