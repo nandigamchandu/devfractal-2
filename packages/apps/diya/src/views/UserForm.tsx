@@ -56,7 +56,7 @@ export const UserForm = formComponent(
 
               <Simple.Select name="role" fullWidth>
                 <option value="dispatcher">Dispatcher</option>
-                <option value="reporter">reporter</option>
+                <option value="reporter">Reporter</option>
                 <option value="associate">Associate</option>
               </Simple.Select>
               <Simple.Text name="address1" />
