@@ -3,6 +3,7 @@ import React from 'react'
 import { Route, useHistory } from 'technoidentity-devfractal'
 import { PerformanceReport } from './batteryreports/PerformanceReport'
 import { TotalAnalysisReport } from './costanalysisreports/TotalAnalysisReport'
+import { DriverBehaviourReport } from './driverreports/DriverBehaviourReport'
 import { DriverDataReport } from './driverreports/DriverDataReports'
 import { DriverTripReport } from './driverreports/DriverTripReports.'
 import { ReportsScreen } from './ReportsScreen'
@@ -26,6 +27,7 @@ export const ReportsRoute = () => {
   const handleDriverBehaviourReport = () => {
     history.push('/reports/driverBehaviourReport')
   }
+
   return (
     <>
       <Route
@@ -55,6 +57,10 @@ export const ReportsRoute = () => {
       <Route
         path="/reports/driverTripReport"
         render={() => <DriverTripReport />}
+      />
+      <Route
+        path="/reports/driverBehaviourReport"
+        render={() => <DriverBehaviourReport />}
       />
     </>
   )
