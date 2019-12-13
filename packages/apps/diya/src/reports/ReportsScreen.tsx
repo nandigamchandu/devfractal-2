@@ -29,6 +29,7 @@ export const ReportsScreen = ({
   handleDriverBehaviourReport,
   handleBatteryDayWiseReport,
   handleBatteryStatusReport,
+  handleCostAnalysisPerEvReport,
 }: any) => {
   const { setHeaderText } = useAuth()
   setHeaderText('Reports')
@@ -185,7 +186,11 @@ export const ReportsScreen = ({
                     Total Analysis Reports
                   </Text>
                   <br />
-                  <Text style={{ cursor: 'pointer' }} color="info">
+                  <Text
+                    style={{ cursor: 'pointer' }}
+                    color="info"
+                    onClick={handleCostAnalysisPerEvReport}
+                  >
                     <Icon color="black" icon={faChevronRight} />
                     Cost Analysis / EV
                   </Text>

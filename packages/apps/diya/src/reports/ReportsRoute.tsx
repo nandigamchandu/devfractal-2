@@ -6,6 +6,7 @@ import { BatteryStatusReport } from './batteryreports/StatusReport'
 import { BatteryDayWiseReport } from './batteryreports/StockReport'
 import { AssignedEVsReport } from './clientreports/AssignedEVsReport'
 import { InvoicesReport } from './clientreports/InvoicesReport'
+import { CostAnalysisPerEvReport } from './costanalysisreports/CostAnalysisPerEv'
 import { TotalAnalysisReport } from './costanalysisreports/TotalAnalysisReport'
 import { DriverBehaviourReport } from './driverreports/DriverBehaviourReport'
 import { DriverDataReport } from './driverreports/DriverDataReports'
@@ -47,6 +48,10 @@ export const ReportsRoute = () => {
     history.push('/reports/batteryStatusReport')
   }
 
+  const handleCostAnalysisPerEvReport = () => {
+    history.push('/reports/costAnalysisPerEvReport')
+  }
+
   return (
     <>
       <Route
@@ -62,6 +67,7 @@ export const ReportsRoute = () => {
             handleDriverBehaviourReport={handleDriverBehaviourReport}
             handleBatteryDayWiseReport={handleBatteryDayWiseReport}
             handleBatteryStatusReport={handleBatteryStatusReport}
+            handleCostAnalysisPerEvReport={handleCostAnalysisPerEvReport}
           />
         )}
       />
@@ -97,6 +103,10 @@ export const ReportsRoute = () => {
       <Route
         path="/reports/driverBehaviourReport"
         render={() => <DriverBehaviourReport />}
+      />
+      <Route
+        path="/reports/costAnalysisPerEvReport"
+        render={() => <CostAnalysisPerEvReport />}
       />
     </>
   )
