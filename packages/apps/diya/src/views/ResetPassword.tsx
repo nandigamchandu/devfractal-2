@@ -8,7 +8,6 @@ import {
 } from 'technoidentity-devfractal'
 import { obj, string, TypeOf } from 'technoidentity-utils'
 import * as yup from 'yup'
-import { useAuth } from '../auth/AuthContext'
 
 export const ResetPasswordData = obj(
   {},
@@ -28,13 +27,7 @@ const ResetPasswordSchema = yup.object().shape({
 
 export const ResetPasswordForm = formComponent(
   ResetPasswordData,
-  ({ initial, edit, onSubmit }) => {
-    const { setHeaderText } = useAuth()
-    if (edit) {
-      setHeaderText('Change Password')
-    } else {
-      setHeaderText('')
-    }
+  ({ initial, onSubmit }) => {
     return (
       <>
         <Columns columnCentered>
