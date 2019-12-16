@@ -131,6 +131,17 @@ export const CostAnalysisPerEvReport = () => {
             <Td>4,150</Td>
             <Td>3,750</Td>
           </Tr>
+          <Tr>
+            <Th>Total</Th>
+            <Td>68,750</Td>
+            <Td>71,600</Td>
+            <Td>68,750</Td>
+            <Td>71,600</Td>
+            <Td>68,750</Td>
+            <Td>71,600</Td>
+            <Td>68,750</Td>
+            <Td>71,600</Td>
+          </Tr>
         </TableBody>
       </Table>
     </>
