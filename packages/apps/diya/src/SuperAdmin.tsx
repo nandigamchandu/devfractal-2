@@ -26,6 +26,7 @@ import {
 } from './pages'
 import { EVsAssignedRoutes } from './pages/EVsAssignedRoutes'
 import { TabletFormRoute } from './pages/TabletFormRoute'
+// import { TripDetailsRoute } from './pages/TripDetailsRoute'
 import { ReportsRoute } from './reports/ReportsRoute'
 import './stylesheets/styles.scss'
 import { AssignBatteryRoute } from './views/AssignBattery'
@@ -58,6 +59,7 @@ export const SuperAdmin = () => {
           <EVSRoutes />
           <InvoiceListRoute />
           <PlanRouteMapRoute />
+          {/* <TripDetailsRoute/> */}
           <TripListRoute />
           <EVsAssignedRoutes />
           <ReportsRoute />

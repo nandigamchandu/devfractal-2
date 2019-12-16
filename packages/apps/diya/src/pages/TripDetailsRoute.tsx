@@ -1,31 +1,31 @@
 import React from 'react'
 import { Get, paths, Route } from 'technoidentity-devfractal'
 import { useAuth } from '../auth/AuthContext'
+// import { useAuth } from '../auth/AuthContext'
 import {
   cargosUrl,
   sessionExpire,
-  tripAPI,
+  tripDetailsAPI,
   TripDetailsResponse,
-  TripListResponse,
 } from '../common'
 import { toastMessage } from '../components/Message'
 import { AddCustomer } from '../views/client-dispatcher/AddCustomer'
-import { TripDetailsTable } from '../views/TripsDetailsTable'
+// import { TripDetailsTable } from '../views/TripsDetailsTable'
 
-const ps = paths(tripAPI.resource)
+const ps = paths(tripDetailsAPI.resource)
 
-export async function getTripList({
+export async function getTripDetails({
   setUser,
   logout,
   setHeaderText,
-}: any): Promise<TripListResponse['data']['rows']> {
+}: any): Promise<TripDetailsResponse['data']> {
   try {
     const drivers = await cargosUrl().get(
       { resource: 'trips' },
-      TripListResponse,
+      TripDetailsResponse,
     )
-    setHeaderText('Trips')
-    return drivers.data.rows
+    setHeaderText('Trips Details')
+    return drivers.data
   } catch (error) {
     sessionExpire({ error, setUser, logout, toastMessage })
     setHeaderText(undefined)
@@ -33,45 +33,27 @@ export async function getTripList({
   }
 }
 
-export async function getTripDetails({
-  setUser,
-  logout,
-  tripId,
-}: any): Promise<TripDetailsResponse['data']> {
-  try {
-    const drivers = await cargosUrl().get(
-      { resource: `trips/${tripId}` },
-      TripDetailsResponse,
-    )
-    return drivers.data
-  } catch (error) {
-    sessionExpire({ error, setUser, logout, toastMessage })
-    throw Error(error)
-  }
-}
-
-const TripList = ({ setUser, logout, setHeaderText }: any) => (
+const TripDetails = ({ setUser, logout, setHeaderText }: any) => (
   <Get
-    asyncFn={() => getTripList({ setUser, logout, setHeaderText })}
-    component={TripDetailsTable}
+    asyncFn={() => getTripDetails({ setUser, logout, setHeaderText })}
+    component={AddCustomer}
   />
 )
 
-export const TripListRoute: React.FC = () => {
+export const TripDetailsRoute: React.FC = () => {
   const { logout, setUser, setHeaderText } = useAuth()
   return (
     <>
       <Route
         path={ps.list}
         render={() => (
-          <TripList
+          <TripDetails
             setUser={setUser}
             logout={logout}
             setHeaderText={setHeaderText}
           />
         )}
       />
-      <Route path="/trips/tripDetails" render={() => <AddCustomer />} />
     </>
   )
 }

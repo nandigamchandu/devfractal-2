@@ -1,8 +1,10 @@
 import { CreateLink, links } from 'devfractal-crud'
 import { Column, Columns, Section } from 'devfractal-ui-core'
+import { date } from 'io-ts-types/lib/date'
 import React from 'react'
-import { TripListResponse } from '../common'
+import { TripDetailsResponse, TripListResponse } from '../common'
 import { Table } from '../reacttable/Table'
+import { formatDate } from '../reacttable/utils'
 
 const tripLinks = links('trips')
 
@@ -11,7 +13,21 @@ export const TripDetailsTable = ({
 }: {
   readonly data: TripListResponse['data']['rows']
 }) => {
-  const tableData = data.map(tripList => ({ ...tripList, actions: 'actions' }))
+  const keys = data.length > 0 ? Object.keys(data[0]) : []
+
+  const tableData = data.length
+    ? data.map((tripList: TripDetailsResponse['data']) =>
+        keys.reduce(
+          (acc, k) => ({
+            ...acc,
+            [k]: date.is(tripList[k]) ? formatDate(tripList[k]) : tripList[k],
+            actions: 'actions',
+          }),
+          {},
+        ),
+      )
+    : []
+
   return (
     <Section>
       <Columns>
@@ -30,7 +46,13 @@ export const TripDetailsTable = ({
         ]}
         sorting={true}
         pagination={true}
-        headerNames={['evId', 'tripId', 'date', 'startTime', 'clientName']}
+        headerNames={[
+          'vehicleName',
+          'tripName',
+          'startDate',
+          'startTime',
+          'clientName',
+        ]}
         filterOption={[{ columnName: 'tripId', filterType: 'search' }]}
       />
     </Section>

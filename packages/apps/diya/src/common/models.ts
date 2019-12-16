@@ -567,18 +567,22 @@ export const TripData = obj(
     id: string,
     createdById: string,
     updatedById: string,
-    isActive: string,
+    isActive: boolean,
     cashCollected: number,
     vehicleName: string,
     tripName: string,
   },
   {
-    startDate: string,
+    startDate: ISODate,
     startTime: string,
     vehicleId: string,
     tripStatus: string,
   },
 )
+export const TripDetailsResponse = req({
+  data: TripData,
+})
+export type TripDetailsResponse = TypeOf<typeof TripDetailsResponse>
 export const TripListResponse = req({
   data: req({
     rows: array(TripData),
