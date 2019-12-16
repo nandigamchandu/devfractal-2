@@ -55,7 +55,7 @@ export const ResetPasswordForm = formComponent(
               }}
             >
               <Simple.Text name="email" />
-              <Simple.FormButtons submit={'Save'} />
+              <Simple.FormButtons submit={'Change'} />
             </Simple.Form>
           </Column>
         </Columns>
