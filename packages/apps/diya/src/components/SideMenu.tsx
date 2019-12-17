@@ -145,6 +145,12 @@ export const SideMenuView: React.FC<SideMenuViewProps> = ({
                 label="Users"
                 visibility={visibility}
               />
+              {/* <SideMenuItem
+                href="/trip_Details"
+                icon={faRandom}
+                label="Trip Details"
+                visibility={visibility}
+              /> */}
               <SideMenuItem
                 href="/trips"
                 icon={faRandom}

@@ -1,9 +1,17 @@
 import { FormikActions } from 'formik'
 import React from 'react'
-import { verify } from 'technoidentity-utils'
+import { ISODate, verify } from 'technoidentity-utils'
 import { AuthUserInfo } from '../common'
 import { LoginValues } from '../views'
 
+export interface TripData {
+  readonly id: string
+  readonly isActive: boolean
+  readonly startDate: ISODate
+  readonly startTime: string
+  readonly tripStatus: string
+  readonly vehicleId: string
+}
 interface AuthContext<T, R> {
   readonly user: R | null
   readonly setUser: React.Dispatch<R | null>
@@ -11,6 +19,8 @@ interface AuthContext<T, R> {
   readonly noOfLoginAttempts: number
   readonly headerText: string
   readonly setHeaderText: React.Dispatch<string | null>
+  readonly tripData: TripData
+  readonly setTripData: React.Dispatch<TripData>
   login(
     values: T,
     actions: FormikActions<LoginValues>,
@@ -38,6 +48,8 @@ export const AuthProvider: React.FC<
   children,
   headerText,
   setHeaderText,
+  tripData,
+  setTripData,
 }) => {
   return (
     <AuthContext.Provider
@@ -50,6 +62,8 @@ export const AuthProvider: React.FC<
         noOfLoginAttempts,
         headerText,
         setHeaderText,
+        tripData,
+        setTripData,
       }}
     >
       {children}

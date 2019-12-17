@@ -1,6 +1,6 @@
 import React from 'react'
 import { Get, paths, Post, Route } from 'technoidentity-devfractal'
-import { useAuth } from '../auth/AuthContext'
+import { TripData, useAuth } from '../auth/AuthContext'
 import {
   cargosUrl,
   EVsAddTripResponse,
@@ -11,6 +11,7 @@ import {
 } from '../common'
 import { toastMessage } from '../components/Message'
 import { AddTripForm } from '../views/AddTripForm'
+// import { AddCustomer } from '../views/client-dispatcher/AddCustomer'
 import { EVsAssignedList } from '../views/EVsAssignedList'
 
 const ps = paths(evsAssignedAPI.resource)
@@ -36,13 +37,24 @@ export async function getEVsAssignedList({
 
 export async function postEVsAddTrip(
   data: EVsTripData,
+  setUser: any,
+  logout: any,
+  setTripData: React.Dispatch<TripData>,
 ): Promise<EVsAddTripResponse['data']> {
-  const evsData = await cargosUrl().post(
-    { resource: 'trips' },
-    data,
-    EVsAddTripResponse,
-  )
-  return evsData.data
+  try {
+    const evsData = await cargosUrl().post(
+      { resource: 'trips' },
+      data,
+      EVsAddTripResponse,
+    )
+    toastMessage('success', 'Trip Added')
+    setTripData(evsData.data)
+    return evsData.data
+  } catch (error) {
+    sessionExpire({ error, setUser, logout, toastMessage })
+    toastMessage('fail', error.response.data.errors)
+    throw Error(error)
+  }
 }
 
 const EVsList = ({ setUser, logout, setHeaderText }: any) => (
@@ -51,16 +63,16 @@ const EVsList = ({ setUser, logout, setHeaderText }: any) => (
     component={EVsAssignedList}
   />
 )
-const EVsAddTrip = () => (
+const EVsAddTrip = ({ setTripData, setUser, logout }: any) => (
   <Post
-    // redirectTo={ps.list}
+    redirectTo={'/trips/tripDetails'}
     component={AddTripForm}
-    onPost={postEVsAddTrip}
+    onPost={data => postEVsAddTrip(data, setUser, logout, setTripData)}
   />
 )
 
 export const EVsAssignedRoutes: React.FC = () => {
-  const { logout, setUser, setHeaderText } = useAuth()
+  const { logout, setUser, setHeaderText, setTripData } = useAuth()
 
   return (
     <>
@@ -74,7 +86,17 @@ export const EVsAssignedRoutes: React.FC = () => {
           />
         )}
       />
-      <Route path="/evs_assigned/addTrip/:id" render={() => <EVsAddTrip />} />
+      <Route
+        path="/evs_assigned/addTrip/:id"
+        render={() => (
+          <EVsAddTrip
+            setTripData={setTripData}
+            setUser={setUser}
+            logout={logout}
+          />
+        )}
+      />
+      {/* <Route path="/evs_assigned/tripDetails" render={() => <AddCustomer />} /> */}
     </>
   )
 }

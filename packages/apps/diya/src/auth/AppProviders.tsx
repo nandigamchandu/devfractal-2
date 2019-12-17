@@ -5,7 +5,7 @@ import { AuthUserInfo } from '../common'
 // import { toastMessage } from '../components/Message'
 import { baseURL } from '../config'
 import { LoginValues } from '../views'
-import { AuthProvider } from './AuthContext'
+import { AuthProvider, TripData } from './AuthContext'
 
 const http = httpAPI({ baseURL })
 
@@ -63,6 +63,14 @@ export const AppProviders: React.FC = ({ children }) => {
   const [user, setUser] = React.useState()
   const [noOfLoginAttempts, setCount] = React.useState(0)
   const [headerText, setHeaderText] = React.useState()
+  const [tripData, setTripData] = React.useState<TripData>({
+    id: '',
+    tripStatus: '',
+    isActive: false,
+    startDate: new Date(),
+    startTime: '',
+    vehicleId: '',
+  })
 
   return (
     <AuthProvider
@@ -74,6 +82,8 @@ export const AppProviders: React.FC = ({ children }) => {
       setCount={setCount}
       headerText={headerText}
       setHeaderText={setHeaderText}
+      tripData={tripData}
+      setTripData={setTripData}
     >
       {children}
     </AuthProvider>
