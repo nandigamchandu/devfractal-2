@@ -110,7 +110,6 @@ export async function postAssignForm(
     toastMessage('success', 'assigned')
     return assign.data
   } catch (error) {
-    console.log(error.response)
     sessionExpire({ error, setUser, logout, toastMessage })
     toastMessage('fail', error.response.data.errors)
     throw Error(error)
