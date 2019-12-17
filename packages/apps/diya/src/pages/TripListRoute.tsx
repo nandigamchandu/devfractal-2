@@ -3,9 +3,12 @@ import { Get, paths, Post, Route } from 'technoidentity-devfractal'
 import { useAuth } from '../auth/AuthContext'
 import {
   cargosUrl,
-  CustomerData,
+  // CustomerData,
+  // CustomerData,
   CustomerListResponse,
   CustomerResponse,
+  PostCustomerData,
+  PostCustomerDataResponse,
   sessionExpire,
   tripAPI,
   TripDetailsResponse,
@@ -14,7 +17,10 @@ import {
 import { toastMessage } from '../components/Message'
 import { AddCustomer } from '../views/client-dispatcher/AddCustomer'
 import { CustomerForm } from '../views/client-dispatcher/AddCustomerForm'
+// import { AddCustomer } from '../views/client-dispatcher/AddCustomer'
+// import { CustomerForm } from '../views/client-dispatcher/AddCustomerForm'
 import { TripDetailsTable } from '../views/TripsDetailsTable'
+// import { CustomerRoutes } from './CustomerRoutes'
 
 const ps = paths(tripAPI.resource)
 
@@ -54,6 +60,23 @@ export async function getTripDetails({
   }
 }
 
+export async function getTripCustomers({
+  tripId,
+  setUser,
+  logout,
+}: any): Promise<CustomerListResponse['data']['rows']> {
+  try {
+    const drivers = await cargosUrl().get(
+      { resource: `customers/?tripId=${tripId}` },
+      CustomerListResponse,
+    )
+    return drivers.data.rows
+  } catch (error) {
+    sessionExpire({ error, setUser, logout, toastMessage })
+    throw Error(error)
+  }
+}
+
 const TripList = ({ setUser, logout, setHeaderText }: any) => (
   <Get
     asyncFn={() => getTripList({ setUser, logout, setHeaderText })}
@@ -77,14 +100,14 @@ export async function getCustomer(
 }
 
 async function postCustomer(
-  data: CustomerData,
+  data: PostCustomerData,
   { setUser, logout }: any,
-): Promise<CustomerResponse['data']> {
+): Promise<PostCustomerDataResponse['data']> {
   try {
     const customer = await cargosUrl().post(
       { resource: 'customers' },
       data,
-      CustomerResponse,
+      PostCustomerDataResponse,
     )
     toastMessage('success', 'Customer Added')
     return customer.data
@@ -121,13 +144,16 @@ export async function getCustomerList({
 //   />
 // )
 
-const CustomerAdd = ({ setUser, logout }: any) => (
-  <Post
-    redirectTo={ps.list}
-    component={CustomerForm}
-    onPost={data => postCustomer(data, { setUser, logout })}
-  />
-)
+const CustomerAdd = ({ setUser, logout }: any) => {
+  const { tripData } = useAuth()
+  return (
+    <Post
+      redirectTo={`/trips/tripDetails/${tripData.id}`}
+      component={CustomerForm}
+      onPost={data => postCustomer(data, { setUser, logout })}
+    />
+  )
+}
 
 export const TripListRoute: React.FC = () => {
   const { logout, setUser, setHeaderText } = useAuth()
@@ -143,11 +169,11 @@ export const TripListRoute: React.FC = () => {
           />
         )}
       />
-      <Route path="/trips/tripDetails/:id" render={() => <AddCustomer />} />
       <Route
-        path={ps.create}
+        path="/trips/new"
         render={() => <CustomerAdd setUser={setUser} logout={logout} />}
       />
+      <Route path="/trips/tripDetails/:id" render={() => <AddCustomer />} />
     </>
   )
 }
