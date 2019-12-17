@@ -825,13 +825,39 @@ export const CustomerData = obj(
     id: string,
   },
   {
-    customerName: string,
+    name: string,
     paymentType: string,
     address: string,
     contactNumber: string,
-    status: string,
+    deliveryStatus: string,
+    longitude: number,
+    latitude: number,
+    tripId: string,
+    vehicleId: string,
+    estimatedDeliveryTime: ISODate,
   },
 )
+
+export const PostCustomerData = obj(
+  {},
+  {
+    name: string,
+    paymentType: string,
+    address: string,
+    contactNumber: string,
+    deliveryStatus: string,
+    longitude: number,
+    latitude: number,
+    tripId: string,
+    vehicleId: string,
+    estimatedDeliveryTime: ISODate,
+  },
+)
+export const PostCustomerDataResponse = req({
+  data: CustomerData,
+})
+export type PostCustomerData = TypeOf<typeof PostCustomerData>
+export type PostCustomerDataResponse = TypeOf<typeof PostCustomerDataResponse>
 
 export type CustomerData = TypeOf<typeof CustomerData>
 
