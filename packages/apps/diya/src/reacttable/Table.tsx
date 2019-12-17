@@ -31,6 +31,7 @@ export function Table<
   pagination,
   headerLabels,
   actions,
+  linkColumns,
 }: ReactTableProps<D>) {
   const { columns } = generateReactTableData<D>({
     tableData,
@@ -62,6 +63,7 @@ export function Table<
               {...reactTableData}
               sorting={sorting}
               actions={actions}
+              linkColumns={linkColumns}
             />
             {pagination ? (
               <Column style={{ paddingLeft: '40px' }}>

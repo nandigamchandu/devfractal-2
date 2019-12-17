@@ -13,6 +13,7 @@ export function ReactTable<
   prepareRow,
   sorting,
   actions,
+  linkColumns,
 }: TableProps<D>) {
   return (
     <Table fullWidth striped narrow {...getTableProps()}>
@@ -21,7 +22,12 @@ export function ReactTable<
         sorting={sorting}
         actions={actions}
       />
-      <ReactTableBody page={page} prepareRow={prepareRow} actions={actions} />
+      <ReactTableBody
+        page={page}
+        prepareRow={prepareRow}
+        actions={actions}
+        linkColumns={linkColumns}
+      />
     </Table>
   )
 }

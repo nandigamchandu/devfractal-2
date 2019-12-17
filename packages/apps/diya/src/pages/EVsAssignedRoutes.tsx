@@ -1,6 +1,6 @@
 import React from 'react'
-import { Get, paths, Post, Route } from 'technoidentity-devfractal'
-import { TripData, useAuth } from '../auth/AuthContext'
+import { Get, paths, Post, Route, useHistory } from 'technoidentity-devfractal'
+import { useAuth } from '../auth/AuthContext'
 import {
   cargosUrl,
   EVsAddTripResponse,
@@ -39,7 +39,7 @@ export async function postEVsAddTrip(
   data: EVsTripData,
   setUser: any,
   logout: any,
-  setTripData: React.Dispatch<TripData>,
+  push: any,
 ): Promise<EVsAddTripResponse['data']> {
   try {
     const evsData = await cargosUrl().post(
@@ -48,7 +48,7 @@ export async function postEVsAddTrip(
       EVsAddTripResponse,
     )
     toastMessage('success', 'Trip Added')
-    setTripData(evsData.data)
+    push(`/trips/tripDetails/${evsData.data.id}`)
     return evsData.data
   } catch (error) {
     sessionExpire({ error, setUser, logout, toastMessage })
@@ -63,16 +63,19 @@ const EVsList = ({ setUser, logout, setHeaderText }: any) => (
     component={EVsAssignedList}
   />
 )
-const EVsAddTrip = ({ setTripData, setUser, logout }: any) => (
-  <Post
-    redirectTo={'/trips/tripDetails'}
-    component={AddTripForm}
-    onPost={data => postEVsAddTrip(data, setUser, logout, setTripData)}
-  />
-)
+const EVsAddTrip = ({ setUser, logout }: any) => {
+  const { push } = useHistory()
+  return (
+    <Post
+      // redirectTo={`/trips/tripDetails:${undefined}`}
+      component={AddTripForm}
+      onPost={data => postEVsAddTrip(data, setUser, logout, push)}
+    />
+  )
+}
 
 export const EVsAssignedRoutes: React.FC = () => {
-  const { logout, setUser, setHeaderText, setTripData } = useAuth()
+  const { logout, setUser, setHeaderText } = useAuth()
 
   return (
     <>
@@ -88,13 +91,7 @@ export const EVsAssignedRoutes: React.FC = () => {
       />
       <Route
         path="/evs_assigned/addTrip/:id"
-        render={() => (
-          <EVsAddTrip
-            setTripData={setTripData}
-            setUser={setUser}
-            logout={logout}
-          />
-        )}
+        render={() => <EVsAddTrip setUser={setUser} logout={logout} />}
       />
       {/* <Route path="/evs_assigned/tripDetails" render={() => <AddCustomer />} /> */}
     </>

@@ -22,7 +22,7 @@ export const EVsAssignedList = ({
         ]}
         sorting={true}
         pagination={true}
-        headerNames={['vehicleId', 'driverId']}
+        headerNames={['vehicleName', 'driverName']}
         // filterOption={[{ columnName: 'tripId', filterType: 'search' }]}
         actions={{
           addTrip: id => `/evs_assigned/addTrip/${id}`,

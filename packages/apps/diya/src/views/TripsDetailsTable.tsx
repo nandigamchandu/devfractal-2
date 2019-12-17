@@ -1,4 +1,4 @@
-import { CreateLink, links } from 'devfractal-crud'
+// import { CreateLink, links } from 'devfractal-crud'
 import { Column, Columns, Section } from 'devfractal-ui-core'
 import { date } from 'io-ts-types/lib/date'
 import React from 'react'
@@ -6,7 +6,7 @@ import { TripDetailsResponse, TripListResponse } from '../common'
 import { Table } from '../reacttable/Table'
 import { formatDate } from '../reacttable/utils'
 
-const tripLinks = links('trips')
+// const tripLinks = links('trips')
 
 export const TripDetailsTable = ({
   data,
@@ -32,9 +32,9 @@ export const TripDetailsTable = ({
     <Section>
       <Columns>
         <Column>
-          <CreateLink alignment="right" variant="primary" to={tripLinks.create}>
+          {/* <CreateLink alignment="right" variant="primary" to={tripLinks.create}>
             Add Trip
-          </CreateLink>
+          </CreateLink> */}
         </Column>
       </Columns>
 
@@ -46,14 +46,9 @@ export const TripDetailsTable = ({
         ]}
         sorting={true}
         pagination={true}
-        headerNames={[
-          'vehicleName',
-          'tripName',
-          'startDate',
-          'startTime',
-          'clientName',
-        ]}
-        filterOption={[{ columnName: 'tripId', filterType: 'search' }]}
+        headerNames={['tripName', 'vehicleName', 'startDate', 'startTime']}
+        filterOption={[{ columnName: 'tripName', filterType: 'search' }]}
+        linkColumns={['tripName']}
       />
     </Section>
   )

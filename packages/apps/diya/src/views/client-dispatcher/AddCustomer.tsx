@@ -2,6 +2,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { CreateLink, links } from 'devfractal-crud'
 import {
   Box,
+  Button,
   Column,
   Columns,
   Image,
@@ -10,6 +11,8 @@ import {
   Text,
 } from 'devfractal-ui-core'
 import React from 'react'
+import { useRouteMatch } from 'react-router'
+import { useHistory } from 'technoidentity-devfractal'
 import { useAuth } from '../../auth/AuthContext'
 import {
   CustomerData,
@@ -18,7 +21,9 @@ import {
 } from '../../common'
 import diyaAuto from '../../images/diyaAuto.png'
 // import { MapView } from '../../maps'
+// import { MapView } from '../../maps'
 import { getTripDetails } from '../../pages'
+// import { FilterData } from '../../reacttable/FilterData'
 // import { FilterData } from '../../reacttable/FilterData'
 import { Table } from '../../reacttable/Table'
 
@@ -73,23 +78,31 @@ export const CustomerList = ({
 }
 
 export const AddCustomer: React.FC = () => {
-  const { tripData, setHeaderText, setUser, logout } = useAuth()
-  console.log(tripData)
+  const { setHeaderText, setUser, logout } = useAuth()
+  const { params }: any = useRouteMatch()
+  const history = useHistory()
   const [tripDetails, setTripDetails] = React.useState<
     TripDetailsResponse['data']
   >()
+  const tripId = params.id
   React.useMemo(async () => {
     const vehicleData: TripDetailsResponse['data'] = await getTripDetails({
       setUser,
       logout,
-      tripId: tripData.id,
+      tripId,
     })
     setTripDetails(vehicleData)
     setHeaderText('Trip Details')
-  }, [tripData, setHeaderText, logout, setUser])
-  console.log(tripDetails)
+  }, [setHeaderText, logout, setUser, tripId])
   return (
     <>
+      <Button
+        textAlignment="left"
+        variant="primary"
+        onClick={() => history.goBack()}
+      >
+        Back
+      </Button>
       <Section>
         <Input leftIcon={faSearch} placeholder="search vehicle ID" />
         <Section>
@@ -126,38 +139,6 @@ export const AddCustomer: React.FC = () => {
           </Box>
         </Section>
         <CustomerList data={data} />
-        {/* <Table
-          tableData={[...data]}
-          headerNames={[
-            'customerName',
-            'paymentType',
-            'address',
-            'contactNumber',
-            'EDT',
-            'status',
-            'actions',
-          ]}
-          // headerLabels={{
-          //   customerName: 'Customer Name',
-          //   paymentType: 'Payment Type',
-          //   address: 'Address',
-          //   contactNumber: 'Contact Number',
-          //   EDT: 'EDT',
-          //   status: 'Status',
-          //   actions: 'Actions',
-          // }}
-          sorting={false}
-          pagination={false}
-        />
-         <CreateLink alignment="right" variant="primary" to={customerLinks.create}>
-        Add Customer
-      </CreateLink>
-        {/* <Column>
-          <FilterData
-            tableData={data}
-            component={({ data }) => <MapView data={data} />}
-          />
-        </Column> */}
       </Section>
     </>
   )

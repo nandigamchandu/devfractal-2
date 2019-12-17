@@ -143,7 +143,7 @@ export const TripListRoute: React.FC = () => {
           />
         )}
       />
-      <Route path="/trips/tripDetails" render={() => <AddCustomer />} />
+      <Route path="/trips/tripDetails/:id" render={() => <AddCustomer />} />
       <Route
         path={ps.create}
         render={() => <CustomerAdd setUser={setUser} logout={logout} />}

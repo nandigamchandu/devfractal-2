@@ -35,6 +35,7 @@ export interface ReactTableProps<D> {
   readonly headerLabels?: any
   readonly pagination: boolean
   readonly actions?: ReactTableActionsProps
+  readonly linkColumns?: ReadonlyArray<string>
 }
 export interface TableFilterHeadProps<D> {
   readonly headerGroups: ReadonlyArray<HeaderGroup<D>>
@@ -48,6 +49,7 @@ export interface TableBodyProps<D> {
   readonly page: ReadonlyArray<Row<D>>
   prepareRow(row: Row<D>): any
   readonly actions?: ReactTableActionsProps
+  readonly linkColumns?: ReadonlyArray<string>
 }
 export interface PaginationProps {
   readonly canPreviousPage: boolean
@@ -86,6 +88,10 @@ interface SortingValues {
   readonly sorting: boolean
   readonly actions?: ReactTableActionsProps
 }
+interface LinkColumns {
+  readonly linkColumns?: ReadonlyArray<string>
+}
 export type TableProps<D extends { readonly id: string }> = TableInstance<D> &
   UsePaginationValues<D> &
-  SortingValues
+  SortingValues &
+  LinkColumns
