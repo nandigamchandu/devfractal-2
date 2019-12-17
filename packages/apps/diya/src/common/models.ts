@@ -819,3 +819,37 @@ export const VehicleLocation = obj(
 )
 
 export type VehicleLocation = TypeOf<typeof VehicleLocation>
+
+export const CustomerData = obj(
+  {
+    id: string,
+  },
+  {
+    customerName: string,
+    paymentType: string,
+    address: string,
+    contactNumber: string,
+    status: string,
+  },
+)
+
+export type CustomerData = TypeOf<typeof CustomerData>
+
+export const CustomerListResponse = req({
+  data: req({
+    rows: array(CustomerData),
+    count: number,
+  }),
+})
+export const CustomerEdit = req({
+  data: CustomerData,
+})
+
+export type CustomerEdit = TypeOf<typeof CustomerEdit>
+export type CustomerListResponse = TypeOf<typeof CustomerListResponse>
+
+export const CustomerResponse = req({
+  data: CustomerData,
+})
+
+export type CustomerResponse = TypeOf<typeof CustomerResponse>

@@ -1,7 +1,7 @@
-import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { CreateLink, links } from 'devfractal-crud'
 import {
   Box,
-  Button,
   Column,
   Columns,
   Image,
@@ -11,12 +11,17 @@ import {
 } from 'devfractal-ui-core'
 import React from 'react'
 import { useAuth } from '../../auth/AuthContext'
-import { TripDetailsResponse } from '../../common'
+import {
+  CustomerData,
+  CustomerListResponse,
+  TripDetailsResponse,
+} from '../../common'
 import diyaAuto from '../../images/diyaAuto.png'
 // import { MapView } from '../../maps'
 import { getTripDetails } from '../../pages'
 // import { FilterData } from '../../reacttable/FilterData'
 import { Table } from '../../reacttable/Table'
+
 // tslint:disable-next-line:readonly-array
 const data = [
   {
@@ -27,9 +32,45 @@ const data = [
     contactNumber: '',
     EDT: '',
     status: '',
-    actions: '',
   },
 ]
+
+const customerLinks = links('trips')
+
+export const CustomerList = ({
+  data: customerList,
+}: {
+  readonly data: CustomerListResponse['data']['rows']
+}) => {
+  const tableData = customerList.map(data => ({
+    ...data,
+  }))
+  return (
+    <Section>
+      <Table
+        tableData={[
+          ...((tableData as unknown) as ReadonlyArray<
+            Omit<CustomerData, 'id'> & { readonly id: string }
+          >),
+        ]}
+        sorting={true}
+        pagination={true}
+        headerNames={[
+          'customerName',
+          'paymentType',
+          'address',
+          'contactNumber',
+          'EDT',
+          'status',
+        ]}
+        filterOption={[{ columnName: 'name', filterType: 'search' }]}
+      />
+      <CreateLink alignment="right" variant="primary" to={customerLinks.create}>
+        Add Customer
+      </CreateLink>
+    </Section>
+  )
+}
 
 export const AddCustomer: React.FC = () => {
   const { tripData, setHeaderText, setUser, logout } = useAuth()
@@ -84,7 +125,8 @@ export const AddCustomer: React.FC = () => {
             </Columns>
           </Box>
         </Section>
-        <Table
+        <CustomerList data={data} />
+        {/* <Table
           tableData={[...data]}
           headerNames={[
             'customerName',
@@ -107,9 +149,9 @@ export const AddCustomer: React.FC = () => {
           sorting={false}
           pagination={false}
         />
-        <Button variant="primary" leftIcon={faPlusCircle}>
-          <Text style={{ paddingLeft: '20px' }}>Add customer</Text>
-        </Button>
+         <CreateLink alignment="right" variant="primary" to={customerLinks.create}>
+        Add Customer
+      </CreateLink>
         {/* <Column>
           <FilterData
             tableData={data}

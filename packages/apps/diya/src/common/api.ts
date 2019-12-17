@@ -10,6 +10,7 @@ import {
   BatteryEdit,
   BatteryResponse,
   Client,
+  CustomerData,
   DriverData,
   DriverResponse,
   Employee,
@@ -86,9 +87,11 @@ export const employeeAPI = api(Employee, 'employees')
 export const invoiceAPI = api(Invoice, 'invoices')
 export const geoFenceAPI = api(GeoFence, 'geo_fences')
 export const tripAPI = api(TripListResponse, 'trips')
-export const tripDetailsAPI = api(TripDetailsResponse, 'trip_details')
+export const tripDetailsAPI = api(TripDetailsResponse, 'trips')
+export const tripAddCustomerAPI = api(CustomerData, 'trips')
 export const evsAssignedAPI = api(EVsAssignedResponse, 'evs_assigned')
 export const adManagerAPI = api(AdManager, 'adManagers')
 export const assignDriverAPI = api(AssignDriver, 'assignDriver')
 export const assignVehicleAPI = api(AssignVehicle, 'assignVehicle')
 export const assignBatteryAPI = api(AssignBattery, 'assignBattery')
+// export const customerAPI = api(CustomerData, 'customers')

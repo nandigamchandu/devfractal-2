@@ -7,59 +7,14 @@ import {
   CustomerListResponse,
   CustomerResponse,
   sessionExpire,
-  tripAPI,
-  TripDetailsResponse,
-  TripListResponse,
+  tripAddCustomerAPI,
 } from '../common'
 import { toastMessage } from '../components/Message'
-import { AddCustomer } from '../views/client-dispatcher/AddCustomer'
+import { CustomerList } from '../views/client-dispatcher/AddCustomer'
 import { CustomerForm } from '../views/client-dispatcher/AddCustomerForm'
-import { TripDetailsTable } from '../views/TripsDetailsTable'
 
-const ps = paths(tripAPI.resource)
+const ps = paths(tripAddCustomerAPI.resource)
 
-export async function getTripList({
-  setUser,
-  logout,
-  setHeaderText,
-}: any): Promise<TripListResponse['data']['rows']> {
-  try {
-    const drivers = await cargosUrl().get(
-      { resource: 'trips' },
-      TripListResponse,
-    )
-    setHeaderText('Trips')
-    return drivers.data.rows
-  } catch (error) {
-    sessionExpire({ error, setUser, logout, toastMessage })
-    setHeaderText(undefined)
-    throw Error(error)
-  }
-}
-
-export async function getTripDetails({
-  setUser,
-  logout,
-  tripId,
-}: any): Promise<TripDetailsResponse['data']> {
-  try {
-    const drivers = await cargosUrl().get(
-      { resource: `trips/${tripId}` },
-      TripDetailsResponse,
-    )
-    return drivers.data
-  } catch (error) {
-    sessionExpire({ error, setUser, logout, toastMessage })
-    throw Error(error)
-  }
-}
-
-const TripList = ({ setUser, logout, setHeaderText }: any) => (
-  <Get
-    asyncFn={() => getTripList({ setUser, logout, setHeaderText })}
-    component={TripDetailsTable}
-  />
-)
 export async function getCustomer(
   id: string,
   { setUser, logout }: any,
@@ -114,12 +69,12 @@ export async function getCustomerList({
   }
 }
 
-// const CustomerListRoute = ({ setUser, logout, setHeaderText }: any) => (
-//   <Get
-//     asyncFn={() => getCustomerList({ setUser, logout, setHeaderText })}
-//     component={CustomerList}
-//   />
-// )
+const CustomerListRoute = ({ setUser, logout, setHeaderText }: any) => (
+  <Get
+    asyncFn={() => getCustomerList({ setUser, logout, setHeaderText })}
+    component={CustomerList}
+  />
+)
 
 const CustomerAdd = ({ setUser, logout }: any) => (
   <Post
@@ -129,24 +84,23 @@ const CustomerAdd = ({ setUser, logout }: any) => (
   />
 )
 
-export const TripListRoute: React.FC = () => {
+export const CustomerRoutes = () => {
   const { logout, setUser, setHeaderText } = useAuth()
   return (
     <>
       <Route
+        path={ps.create}
+        render={() => <CustomerAdd setUser={setUser} logout={logout} />}
+      />
+      <Route
         path={ps.list}
         render={() => (
-          <TripList
+          <CustomerListRoute
             setUser={setUser}
             logout={logout}
             setHeaderText={setHeaderText}
           />
         )}
-      />
-      <Route path="/trips/tripDetails" render={() => <AddCustomer />} />
-      <Route
-        path={ps.create}
-        render={() => <CustomerAdd setUser={setUser} logout={logout} />}
       />
     </>
   )
