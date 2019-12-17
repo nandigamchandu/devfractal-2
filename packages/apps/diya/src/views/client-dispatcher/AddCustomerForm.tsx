@@ -10,7 +10,8 @@ import {
   Simple,
 } from 'technoidentity-devfractal'
 import * as yup from 'yup'
-import { CustomerData } from '../../common'
+import { useAuth } from '../../auth/AuthContext'
+import { PostCustomerData } from '../../common'
 
 const schema = yup.object().shape({
   contactNumber: yup
@@ -21,8 +22,9 @@ const schema = yup.object().shape({
 })
 
 export const CustomerForm = formComponent(
-  CustomerData,
+  PostCustomerData,
   ({ initial, onSubmit }) => {
+    const { tripData } = useAuth()
     const [paymentType, setPaymentType] = React.useState<string>(
       initial.address,
     )
@@ -35,11 +37,15 @@ export const CustomerForm = formComponent(
             }}
             validationSchema={schema}
             onSubmit={(
-              values: CustomerData,
-              actions: FormikActions<CustomerData>,
+              values: PostCustomerData,
+              actions: FormikActions<PostCustomerData>,
             ) => {
-              const customer = {
+              const customer: PostCustomerData = {
                 ...values,
+                longitude: 0,
+                latitude: 0,
+                vehicleId: tripData.vehicleId,
+                tripId: tripData.id,
               }
               onSubmit(customer, actions)
             }}
@@ -47,7 +53,7 @@ export const CustomerForm = formComponent(
             <Columns>
               <Column>
                 <Simple.Text
-                  name="customerName"
+                  name="name"
                   validations={[
                     matches(/^[a-zA-Z ]*$/, 'must take only alphabets'),
                     required(),
@@ -61,13 +67,8 @@ export const CustomerForm = formComponent(
                     setPaymentType(e.currentTarget.value)
                   }}
                 >
-                  <option value="contract_per_month">Contract Per Month</option>
-                  <option value="pay_per_delivery">Pay Per Delivery</option>
-                  <option value="pay_per_kms_and_time">
-                    Pay Per Kms and Time
-                  </option>
-                  <option value="pay_per_use">Pay Per Use</option>
-                  <option value="remarks">Remarks</option>
+                  <option value="COD">COD</option>
+                  <option value="PrePaid">PrePaid</option>
                 </Simple.Select>
                 {paymentType === 'remarks' ? (
                   <Simple.Text name="remarks" label="Remarks" />
@@ -82,9 +83,10 @@ export const CustomerForm = formComponent(
                   name="contactNumber"
                   validations={[required()]}
                 />
-                <Simple.Select name="status">
-                  <option value="inactive">inactive</option>
-                  <option value="active">active</option>
+                <Simple.Select name="deliveryStatus">
+                  <option value="scheduled">scheduled</option>
+                  <option value="pending">pending</option>
+                  <option value="delivered">delivered</option>
                 </Simple.Select>
                 <Simple.FormButtons submit={'Save'} />
               </Column>
