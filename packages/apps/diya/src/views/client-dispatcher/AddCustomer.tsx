@@ -1,5 +1,5 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { CreateLink, links } from 'devfractal-crud'
+import { CreateLink } from 'devfractal-crud'
 import {
   Box,
   Button,
@@ -16,73 +16,62 @@ import { useHistory } from 'technoidentity-devfractal'
 import { useAuth } from '../../auth/AuthContext'
 import {
   CustomerData,
+  // CustomerListResponse,
   CustomerListResponse,
   TripDetailsResponse,
 } from '../../common'
 import diyaAuto from '../../images/diyaAuto.png'
 // import { MapView } from '../../maps'
 // import { MapView } from '../../maps'
-import { getTripDetails } from '../../pages'
+import { getTripCustomers, getTripDetails } from '../../pages'
 // import { FilterData } from '../../reacttable/FilterData'
 // import { FilterData } from '../../reacttable/FilterData'
 import { Table } from '../../reacttable/Table'
 
-// tslint:disable-next-line:readonly-array
-const data = [
-  {
-    id: '1',
-    customerName: '',
-    paymentType: '',
-    address: '',
-    contactNumber: '',
-    EDT: '',
-    status: '',
-  },
-]
-
-const customerLinks = links('trips')
-
-export const CustomerList = ({
-  data: customerList,
-}: {
-  readonly data: CustomerListResponse['data']['rows']
-}) => {
-  const tableData = customerList.map(data => ({
-    ...data,
-  }))
-  return (
-    <Section>
-      <Table
-        tableData={[
-          ...((tableData as unknown) as ReadonlyArray<
-            Omit<CustomerData, 'id'> & { readonly id: string }
-          >),
-        ]}
-        sorting={true}
-        pagination={true}
-        headerNames={[
-          'customerName',
-          'paymentType',
-          'address',
-          'contactNumber',
-          'EDT',
-          'status',
-        ]}
-        filterOption={[{ columnName: 'name', filterType: 'search' }]}
-      />
-      <CreateLink alignment="right" variant="primary" to={customerLinks.create}>
-        Add Customer
-      </CreateLink>
-    </Section>
-  )
-}
+// export const CustomerList = ({
+//   data,
+// }: {
+//   readonly data: CustomerListResponse['data']['rows']
+// }) => {
+//   const tableData = data.map(data => ({
+//     ...data,
+//   }))
+//   return (
+//     <Section>
+//       <Table
+//         tableData={[
+//           ...((tableData as unknown) as ReadonlyArray<
+//             Omit<CustomerData, 'id'> & { readonly id: string }
+//           >),
+//         ]}
+//         sorting={true}
+//         pagination={true}
+//         headerNames={[
+//           'customerName',
+//           'paymentType',
+//           'address',
+//           'contactNumber',
+//           'EDT',
+//           'status',
+//         ]}
+//         filterOption={[{ columnName: 'name', filterType: 'search' }]}
+//       />
+//       <CreateLink alignment="right" variant="primary" to="/trips/new">
+//         Add Customer
+//       </CreateLink>
+//     </Section>
+//   )
+// }
 
 export const AddCustomer: React.FC = () => {
-  const { setHeaderText, setUser, logout } = useAuth()
+  const { setHeaderText, setUser, logout, setTripData, tripData } = useAuth()
   const { params }: any = useRouteMatch()
   const history = useHistory()
   const [tripDetails, setTripDetails] = React.useState<
     TripDetailsResponse['data']
+  >()
+  const [customerData, setCustomerData] = React.useState<
+    CustomerListResponse['data']['rows']
   >()
   const tripId = params.id
   React.useMemo(async () => {
@@ -91,7 +80,14 @@ export const AddCustomer: React.FC = () => {
       logout,
       tripId,
     })
+    const customerData = await getTripCustomers({ tripId, setUser, logout })
+    setCustomerData(customerData)
     setTripDetails(vehicleData)
+    setTripData({
+      ...tripData,
+      vehicleId: vehicleData.vehicleId,
+      id: vehicleData.id ? vehicleData.id : tripData.id,
+    })
     setHeaderText('Trip Details')
   }, [setHeaderText, logout, setUser, tripId])
   return (
@@ -138,7 +134,32 @@ export const AddCustomer: React.FC = () => {
             </Columns>
           </Box>
         </Section>
-        <CustomerList data={data} />
+        {customerData ? (
+          <Table
+            tableData={[
+              ...((customerData as unknown) as ReadonlyArray<
+                Omit<CustomerData, 'id'> & { readonly id: string }
+              >),
+            ]}
+            sorting={true}
+            pagination={true}
+            headerNames={[
+              'name',
+              'paymentType',
+              'address',
+              'contactNumber',
+              'estimatedDeliveryTime',
+              'deliveryStatus',
+            ]}
+            filterOption={[{ columnName: 'name', filterType: 'search' }]}
+          />
+        ) : (
+          <></>
+        )}
+
+        <CreateLink alignment="right" variant="primary" to="/trips/new">
+          Add Customer
+        </CreateLink>
       </Section>
     </>
   )
