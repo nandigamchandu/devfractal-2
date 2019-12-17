@@ -45,7 +45,7 @@ export const AddCustomer: React.FC = () => {
     })
     setTripDetails(vehicleData)
     setHeaderText('Trip Details')
-  }, [tripData, setHeaderText, logout])
+  }, [tripData, setHeaderText, logout, setUser])
   console.log(tripDetails)
   return (
     <>
