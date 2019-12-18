@@ -834,7 +834,7 @@ export const CustomerData = obj(
     latitude: number,
     tripId: string,
     vehicleId: string,
-    estimatedDeliveryTime: ISODate,
+    estimatedDeliveryTime: string,
   },
 )
 
@@ -850,7 +850,7 @@ export const PostCustomerData = obj(
     latitude: number,
     tripId: string,
     vehicleId: string,
-    estimatedDeliveryTime: ISODate,
+    estimatedDeliveryTime: string,
   },
 )
 export const PostCustomerDataResponse = req({
