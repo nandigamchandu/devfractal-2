@@ -61,7 +61,32 @@ export const AddTripForm = formComponent(
               <Column>
                 <Simple.Date name="startDate" dateFormat="dd/MM/yyyy" />
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <TimePicker value={startTime} onChange={setStartTime} />
+                  <div style={{ marginBottom: '0.75rem' }}>
+                    <label
+                      style={{
+                        color: '#363636',
+                        display: 'block',
+                        fontSize: '1rem',
+                        fontWeight: 700,
+                        marginBottom: '8px',
+                      }}
+                    >
+                      Start Time
+                    </label>
+                    <TimePicker
+                      style={{
+                        border: '1px solid transparent',
+                        backgroundColor: 'white',
+                        borderColor: '#dbdbdb',
+                        borderRadius: '0',
+                        color: '#363636',
+                        borderBottom: 'none',
+                      }}
+                      value={startTime}
+                      onChange={setStartTime}
+                      fullWidth
+                    />
+                  </div>
                 </MuiPickersUtilsProvider>
               </Column>
             </Columns>
