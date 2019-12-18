@@ -42,7 +42,6 @@ export const AddCustomer: React.FC = () => {
     CustomerListResponse['data']['rows']
   >()
   const [state, setState] = useState({ isOpen: false, id: '' })
-  const [useResultData, setUseResultData] = useState(false)
 
   const handleDelete = (id: string) => {
     setState({ isOpen: !state.isOpen, id })
@@ -50,7 +49,6 @@ export const AddCustomer: React.FC = () => {
 
   const handleCustomerList = async () => {
     const customerData = await getTripCustomers({ setUser, logout, tripId })
-    setUseResultData(true)
     setCustomerData(customerData)
     setState({ isOpen: false, id: state.id })
   }

@@ -1,4 +1,3 @@
-import DateFnsUtils from '@date-io/date-fns'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FormikActions } from 'formik'
 import React from 'react'
@@ -98,7 +97,7 @@ export const CustomerForm = formComponent(
                   <Simple.Text name="remarks" label="Remarks" />
                 ) : // tslint:disable-next-line:no-null-keyword
                 null}
-               <Simple.Date name="estimatedDeliveryTime" />
+                <Simple.Date name="estimatedDeliveryTime" />
               </Column>
               <Column>
                 <Simple.Text
