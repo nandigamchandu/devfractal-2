@@ -118,7 +118,7 @@ export const CustomerForm = formComponent(
                   <Simple.Text name="remarks" label="Remarks" />
                 ) : // tslint:disable-next-line:no-null-keyword
                 null}
-                <Label>EDT</Label> */}
+                <Label>EDT</Label>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <TimePicker
                     value={estimatedDeliveryTime}
