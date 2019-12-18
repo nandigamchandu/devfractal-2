@@ -89,7 +89,7 @@ export const AddCustomer: React.FC = () => {
       id: vehicleData.id ? vehicleData.id : tripData.id,
     })
     setHeaderText('Trip Details')
-  }, [setHeaderText, logout, setUser, tripId, setTripData, tripData])
+  }, [setHeaderText, logout, setUser, setTripData])
   return (
     <>
       <Button
