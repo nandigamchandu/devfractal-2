@@ -10,6 +10,7 @@ import {
   BatteryEdit,
   BatteryResponse,
   Client,
+  CustomerData,
   DriverData,
   DriverResponse,
   Employee,
@@ -94,3 +95,5 @@ export const adManagerAPI = api(AdManager, 'adManagers')
 export const assignDriverAPI = api(AssignDriver, 'assignDriver')
 export const assignVehicleAPI = api(AssignVehicle, 'assignVehicle')
 export const assignBatteryAPI = api(AssignBattery, 'assignBattery')
+
+export const editTripCustomerAPI = api(CustomerData, 'trips')

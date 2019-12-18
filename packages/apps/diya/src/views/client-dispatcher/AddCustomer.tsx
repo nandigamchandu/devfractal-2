@@ -1,5 +1,5 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { CreateLink } from 'devfractal-crud'
+import { CreateLink, links } from 'devfractal-crud'
 import {
   Box,
   Button,
@@ -10,7 +10,7 @@ import {
   Section,
   Text,
 } from 'devfractal-ui-core'
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouteMatch } from 'react-router'
 import { useHistory } from 'technoidentity-devfractal'
 import { useAuth } from '../../auth/AuthContext'
@@ -28,40 +28,7 @@ import { getTripCustomers, getTripDetails } from '../../pages'
 // import { FilterData } from '../../reacttable/FilterData'
 import { Table } from '../../reacttable/Table'
 
-// export const CustomerList = ({
-//   data,
-// }: {
-//   readonly data: CustomerListResponse['data']['rows']
-// }) => {
-//   const tableData = data.map(data => ({
-//     ...data,
-//   }))
-//   return (
-//     <Section>
-//       <Table
-//         tableData={[
-//           ...((tableData as unknown) as ReadonlyArray<
-//             Omit<CustomerData, 'id'> & { readonly id: string }
-//           >),
-//         ]}
-//         sorting={true}
-//         pagination={true}
-//         headerNames={[
-//           'customerName',
-//           'paymentType',
-//           'address',
-//           'contactNumber',
-//           'EDT',
-//           'status',
-//         ]}
-//         filterOption={[{ columnName: 'name', filterType: 'search' }]}
-//       />
-//       <CreateLink alignment="right" variant="primary" to="/trips/new">
-//         Add Customer
-//       </CreateLink>
-//     </Section>
-//   )
-// }
+const tripLinks = links('trips')
 
 export const AddCustomer: React.FC = () => {
   const { setHeaderText, setUser, logout, setTripData } = useAuth()
@@ -73,6 +40,10 @@ export const AddCustomer: React.FC = () => {
   const [customerData, setCustomerData] = React.useState<
     CustomerListResponse['data']['rows']
   >()
+  const [state, setState] = useState({ isOpen: false, id: '' })
+  const handleDelete = (id: string) => {
+    setState({ isOpen: !state.isOpen, id })
+  }
   const tripId = params.id
   React.useMemo(async () => {
     const vehicleData: TripDetailsResponse['data'] = await getTripDetails({
@@ -89,6 +60,10 @@ export const AddCustomer: React.FC = () => {
     })
     setHeaderText('Trip Details')
   }, [setHeaderText, logout, setUser, setTripData, tripId])
+
+  const tableData =
+    customerData &&
+    customerData.map(customerList => ({ ...customerList, actions: 'actions' }))
   return (
     <>
       <Button
@@ -133,10 +108,10 @@ export const AddCustomer: React.FC = () => {
             </Columns>
           </Box>
         </Section>
-        {customerData ? (
+        {tableData ? (
           <Table
             tableData={[
-              ...((customerData as unknown) as ReadonlyArray<
+              ...((tableData as unknown) as ReadonlyArray<
                 Omit<CustomerData, 'id'> & { readonly id: string }
               >),
             ]}
@@ -151,11 +126,14 @@ export const AddCustomer: React.FC = () => {
               'deliveryStatus',
             ]}
             filterOption={[{ columnName: 'name', filterType: 'search' }]}
+            actions={{
+              editTo: id => tripLinks.edit(id),
+              onDelete: handleDelete,
+            }}
           />
         ) : (
           <></>
         )}
-
         <CreateLink alignment="right" variant="primary" to="/trips/new">
           Add Customer
         </CreateLink>
