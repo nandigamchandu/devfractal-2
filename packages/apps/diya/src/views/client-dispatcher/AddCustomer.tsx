@@ -20,10 +20,11 @@ import {
   CustomerListResponse,
   TripDetailsResponse,
 } from '../../common'
+import { DeleteConfirmation } from '../../components/DeleteConfirmation'
 import diyaAuto from '../../images/diyaAuto.png'
 // import { MapView } from '../../maps'
 // import { MapView } from '../../maps'
-import { getTripCustomers, getTripDetails } from '../../pages'
+import { deleteList, getTripCustomers, getTripDetails } from '../../pages'
 // import { FilterData } from '../../reacttable/FilterData'
 // import { FilterData } from '../../reacttable/FilterData'
 import { Table } from '../../reacttable/Table'
@@ -41,9 +42,19 @@ export const AddCustomer: React.FC = () => {
     CustomerListResponse['data']['rows']
   >()
   const [state, setState] = useState({ isOpen: false, id: '' })
+  const [useResultData, setUseResultData] = useState(false)
+
   const handleDelete = (id: string) => {
     setState({ isOpen: !state.isOpen, id })
   }
+
+  const handleCustomerList = async () => {
+    const customerData = await getTripCustomers({ setUser, logout, tripId })
+    setUseResultData(true)
+    setCustomerData(customerData)
+    setState({ isOpen: false, id: state.id })
+  }
+
   const tripId = params.id
   React.useMemo(async () => {
     const vehicleData: TripDetailsResponse['data'] = await getTripDetails({
@@ -64,6 +75,7 @@ export const AddCustomer: React.FC = () => {
   const tableData =
     customerData &&
     customerData.map(customerList => ({ ...customerList, actions: 'actions' }))
+
   return (
     <>
       <Button
@@ -134,6 +146,16 @@ export const AddCustomer: React.FC = () => {
         ) : (
           <></>
         )}
+        <DeleteConfirmation
+          setState={setState}
+          state={state}
+          deleteAsyncFun={(url, message) =>
+            deleteList(url, message, { setUser, logout })
+          }
+          handleGetList={handleCustomerList}
+          url={`/customers/${state.id}`}
+          message="Customer Deleted"
+        />
         <CreateLink alignment="right" variant="primary" to="/trips/new">
           Add Customer
         </CreateLink>
