@@ -64,7 +64,7 @@ import { Table } from '../../reacttable/Table'
 // }
 
 export const AddCustomer: React.FC = () => {
-  const { setHeaderText, setUser, logout, setTripData, tripData } = useAuth()
+  const { setHeaderText, setUser, logout, setTripData } = useAuth()
   const { params }: any = useRouteMatch()
   const history = useHistory()
   const [tripDetails, setTripDetails] = React.useState<
@@ -84,12 +84,11 @@ export const AddCustomer: React.FC = () => {
     setCustomerData(customerData)
     setTripDetails(vehicleData)
     setTripData({
-      ...tripData,
       vehicleId: vehicleData.vehicleId,
-      id: vehicleData.id ? vehicleData.id : tripData.id,
+      id: vehicleData.id ? vehicleData.id : '',
     })
     setHeaderText('Trip Details')
-  }, [setHeaderText, logout, setUser, setTripData])
+  }, [setHeaderText, logout, setUser, setTripData, tripId])
   return (
     <>
       <Button
