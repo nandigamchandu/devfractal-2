@@ -1,15 +1,15 @@
 import { FormikActions } from 'formik'
 import React from 'react'
-import { ISODate, verify } from 'technoidentity-utils'
+import { verify } from 'technoidentity-utils'
 import { AuthUserInfo } from '../common'
 import { LoginValues } from '../views'
 
 export interface TripData {
   readonly id: string
-  readonly isActive: boolean
-  readonly startDate: ISODate
-  readonly startTime: string
-  readonly tripStatus: string
+  // readonly isActive: boolean
+  // readonly startDate: ISODate
+  // readonly startTime: string
+  // readonly tripStatus: string
   readonly vehicleId: string
 }
 interface AuthContext<T, R> {
