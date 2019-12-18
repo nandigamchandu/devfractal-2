@@ -1,6 +1,5 @@
-// import DateFnsUtils from '@date-io/date-fns'
+import DateFnsUtils from '@date-io/date-fns'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-// import { MuiPickersUtilsProvider, TimePicker } from '@material-ui/pickers'
 import { FormikActions } from 'formik'
 import React from 'react'
 import {
@@ -30,10 +29,10 @@ export const CustomerForm = formComponent(
   PostCustomerData,
   ({ initial, edit, onSubmit }) => {
     const { tripData, setHeaderText } = useAuth()
-    // const [
-    //   estimatedDeliveryTime,
-    //   setEstimatedDeliveryTime,
-    // ] = React.useState<Date | null>(new Date())
+    const [
+      estimatedDeliveryTime,
+      setEstimatedDeliveryTime,
+    ] = React.useState<Date | null>(new Date())
     const [paymentType, setPaymentType] = React.useState<string>(
       initial.address,
     )
@@ -49,19 +48,6 @@ export const CustomerForm = formComponent(
             lat: 17.385044,
             lng: 78.486671,
           }
-    // const hours =
-    //   estimatedDeliveryTime &&
-    //   estimatedDeliveryTime
-    //     .getHours()
-    //     .toString()
-    //     .padStart(2, '0')
-    // const minutes =
-    //   estimatedDeliveryTime &&
-    //   estimatedDeliveryTime
-    //     .getMinutes()
-    //     .toString()
-    //     .padStart(2, '0')
-    // const textValue = `${hours}:${minutes}`
 
     const [location, setLocation] = React.useState<google.maps.LatLngLiteral>(
       initLocation,
@@ -89,7 +75,6 @@ export const CustomerForm = formComponent(
                 address,
                 vehicleId: tripData.vehicleId,
                 tripId: tripData.id,
-                // estimatedDeliveryTime: textValue,
               }
               onSubmit(customer, actions)
             }}
@@ -117,13 +102,7 @@ export const CustomerForm = formComponent(
                   <Simple.Text name="remarks" label="Remarks" />
                 ) : // tslint:disable-next-line:no-null-keyword
                 null}
-                {/* <Label>EDT</Label>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <TimePicker
-                    value={estimatedDeliveryTime}
-                    onChange={setEstimatedDeliveryTime}
-                  />
-                </MuiPickersUtilsProvider> */}
+               <Simple.Date name="estimatedDeliveryTime"/>
               </Column>
               <Column>
                 <Simple.Text
