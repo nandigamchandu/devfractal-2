@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import { useRouteMatch } from 'react-router'
 import {
   Column,
   Columns,
@@ -10,12 +9,14 @@ import {
   Section,
   Simple,
   SubmitAction,
+  useMatch,
 } from 'technoidentity-devfractal'
-import { empty, fn, req } from 'technoidentity-utils'
+import { empty, fn, req, string, type } from 'technoidentity-utils'
 import * as yup from 'yup'
 import { useAuth } from '../auth/AuthContext'
 import {
   AssignForm,
+  clientAPI,
   ClientResponse,
   DriverListResponse,
   VehicleResponse,
@@ -43,7 +44,7 @@ export const AssignClientForm = component(
   AssignClientFormProps,
   ({ onSubmit }) => {
     const { logout, setUser, setHeaderText } = useAuth()
-    const { params }: any = useRouteMatch()
+    const { params } = useMatch(type({ [clientAPI.idKey]: string }))
     const [clientData, setClientData] = useState<ClientResponse['data']>()
     const [driverList, setDriverList] = useState<
       DriverListResponse['data']['rows']
