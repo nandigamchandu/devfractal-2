@@ -15,3 +15,23 @@ export function fuzzyTextFilterFn(
     threshold: matchSorter.rankings.WORD_STARTS_WITH,
   })
 }
+
+export function convert24To12(time: string) {
+  // tslint:disable-next-line:prefer-const
+  let tmpArr = time.split(':')
+  let time12
+  if (+tmpArr[0] === 12) {
+    time12 = `${tmpArr[0]}:${tmpArr[1]} pm`
+  } else {
+    if (+tmpArr[0] === 0o0) {
+      time12 = `12:${tmpArr[1]} am`
+    } else {
+      if (+tmpArr[0] > 12) {
+        time12 = `${+tmpArr[0] - 12}:${tmpArr[1]} pm`
+      } else {
+        time12 = `${+tmpArr[0]}:${tmpArr[1]} am`
+      }
+    }
+  }
+  return time12
+}
