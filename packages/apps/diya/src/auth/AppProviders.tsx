@@ -65,10 +65,6 @@ export const AppProviders: React.FC = ({ children }) => {
   const [headerText, setHeaderText] = React.useState()
   const [tripData, setTripData] = React.useState<TripData>({
     id: '',
-    tripStatus: '',
-    isActive: false,
-    startDate: new Date(),
-    startTime: '',
     vehicleId: '',
   })
 
