@@ -29,10 +29,6 @@ export const CustomerForm = formComponent(
   PostCustomerData,
   ({ initial, edit, onSubmit }) => {
     const { tripData, setHeaderText } = useAuth()
-    const [
-      estimatedDeliveryTime,
-      setEstimatedDeliveryTime,
-    ] = React.useState<Date | null>(new Date())
     const [paymentType, setPaymentType] = React.useState<string>(
       initial.address,
     )
@@ -102,7 +98,7 @@ export const CustomerForm = formComponent(
                   <Simple.Text name="remarks" label="Remarks" />
                 ) : // tslint:disable-next-line:no-null-keyword
                 null}
-               <Simple.Date name="estimatedDeliveryTime"/>
+               <Simple.Date name="estimatedDeliveryTime" />
               </Column>
               <Column>
                 <Simple.Text
